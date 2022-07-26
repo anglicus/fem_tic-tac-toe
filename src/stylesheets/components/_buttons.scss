@@ -1,0 +1,98 @@
+// _buttons.scss
+
+@use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
+
+// global properties
+button {
+  cursor: pointer;
+  border: none;
+  padding: var(--padding-top) var(--padding-right) var(--padding-bottom)
+    var(--padding-left);
+  box-shadow: inset 0 var(--shadow-width) 0 0 var(--shadow-color);
+  border-radius: var(--border-radius);
+
+  &:hover {
+    background-color: var(--hover-color);
+  }
+
+  &:active {
+    padding-top: calc(var(--padding-top) + 1px);
+    padding-bottom: calc(var(--padding-bottom) - 1px);
+    box-shadow: inset 0 calc(var(--shadow-width) + 1px) 0 0 var(--shadow-color);
+  }
+}
+
+// set colors
+.btn-yellow {
+  background-color: $lightYellow;
+  --shadow-color: #{$lightYellowShadow};
+  --hover-color: #{$lightYellowHover};
+}
+
+.btn-blue {
+  background-color: $lightBlue;
+  --shadow-color: #{$lightBlueShadow};
+  --hover-color: #{$lightBlueHover};
+}
+
+.btn-silver {
+  background-color: $silver;
+  --shadow-color: #{$silverShadow};
+  --hover-color: #{$silverHover};
+}
+
+// set sizes
+.btn-primary {
+  height: 56px;
+  width: 100%; // stretch to fill its parent
+  --padding-top: 14px;
+  --padding-bottom: 22px;
+  --padding-left: 0px;
+  --padding-right: 0px;
+  --shadow-width: -8px;
+  --border-radius: 15px;
+
+  // medium-large:
+  @include breakpoint-up(medium) {
+    height: 67px;
+    --padding-top: 17px;
+    --padding-bottom: 25px;
+  }
+}
+
+.btn-secondary {
+  height: 52px;
+  // width will depend on contents
+  --padding-top: 15px;
+  --padding-right: 16px;
+  --padding-bottom: 17px;
+  --padding-left: 15px;
+  --shadow-width: -4px;
+  --border-radius: 10px;
+
+  // same size on all screens
+}
+
+.btn-reset {
+  width: 40px;
+  height: 40px;
+  --padding-top: 12px;
+  --padding-right: 12px;
+  --padding-bottom: 12px;
+  --padding-left: 12px;
+
+  --shadow-width: -4px;
+  --border-radius: 5px;
+
+  // medium-large:
+  @include breakpoint-up(medium) {
+    width: 52px;
+    height: 52px;
+    --padding-top: 16px;
+    --padding-right: 16px;
+    --padding-bottom: 16px;
+    --padding-left: 16px;
+    --border-radius: 10px;
+  }
+}
