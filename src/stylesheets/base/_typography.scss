@@ -1,0 +1,54 @@
+// _typography.scss
+
+@use "../abstracts/mixins" as *;
+
+html {
+  font-size: 100%;
+}
+
+// user name 
+h1 {
+  font-size: 1.5rem;
+  font-weight: 300;
+
+  @include breakpoint-up(medium) {
+    font-size: 2.5rem;
+  }
+}
+
+// card titles
+h2 {
+  font-size: 1.125rem;
+  font-weight: 500;
+
+  // same on all screen sizes
+}
+
+// hour values
+h3 {
+  font-size: 2rem;
+  font-weight: 300;
+
+  @include breakpoint-up(medium) {
+    font-size: 2.5rem;
+  }
+
+  @include breakpoint-up(large) {
+    font-size: 3.5rem;
+  }
+}
+
+// 'report for' and previous hours
+p {
+  font-size: 0.9375rem;
+  font-weight: 400;
+
+  // same on all screen sizes
+}
+
+button {
+  font-size: 1.125rem;
+  font-weight: 400;
+
+  // same on all screen sizes
+}

@@ -1,0 +1,32 @@
+// _designmatch.scss
+
+// overlays a transparent copy of the design files
+// when needing to match a design exactly
+
+@use "../abstracts/mixins" as *;
+
+body {
+  &::before {
+    position: absolute;
+    z-index: 50;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    content: "";
+    background-image: url("/design/Mobile.jpg");
+    background-size: 375px auto;
+    opacity: 0;
+    pointer-events: none;
+
+    @include breakpoint-up(medium) {
+      background-image: url("/design/Desktop.jpg");
+      background-size: 768px auto;
+    }
+
+    @include breakpoint-up(large) {
+      background-image: url("/design/Desktop.jpg");
+      background-size: 1440px auto;
+    }
+  }
+}
