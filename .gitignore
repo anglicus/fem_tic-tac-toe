@@ -21,7 +21,7 @@
 *.sketch
 *.fig
 *.xd
-/.vscode
+.vscode/
 
 npm-debug.log*
 yarn-debug.log*
