@@ -6,7 +6,7 @@ html {
   font-size: 100%;
 }
 
-// user name 
+// user name
 h1 {
   font-size: 1.5rem;
   font-weight: 300;
@@ -47,8 +47,17 @@ p {
 }
 
 button {
-  font-size: 1.125rem;
-  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.26rem;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-transform: uppercase;
 
-  // same on all screen sizes
+  @include breakpoint-up(medium) {
+    font-size: 1.25rem;
+    line-height: 1.575rem;
+    letter-spacing: 1.25px;
+  }
+
+  // same on large
 }

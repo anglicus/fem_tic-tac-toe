@@ -4,7 +4,7 @@
 @use "../abstracts/mixins" as *;
 
 // global properties
-button {
+.btn-global {
   cursor: pointer;
   border: none;
   padding: var(--padding-top) var(--padding-right) var(--padding-bottom)

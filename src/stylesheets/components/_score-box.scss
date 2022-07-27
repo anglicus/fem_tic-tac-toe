@@ -1,0 +1,19 @@
+// _score-box.scss
+
+@use "../abstracts/colors" as *;
+
+.score-box {
+  border-radius: 10px;
+
+  &.yellow {
+    background-color: $lightYellow;
+  }
+
+  &.blue {
+    background-color: $lightBlue;
+  }
+
+  &.silver {
+    background-color: $silver;
+  }
+}
