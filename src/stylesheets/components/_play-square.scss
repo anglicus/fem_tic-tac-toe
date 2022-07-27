@@ -1,0 +1,13 @@
+// _play-square.scss
+
+@use "../abstracts/colors" as *;
+
+.play-square {
+  background-color: $semiDarkNavy;
+  --shadow-width: -8px;
+  height: 95px;
+  width: 96px;
+  border-radius: 10px;
+
+  box-shadow: inset 0 var(--shadow-width) 0 0 $darkNavyShadow;
+}

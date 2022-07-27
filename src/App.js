@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import iconX from "./assets/icon-x.svg";
+import iconO from "./assets/icon-o.svg";
 
 import "./css/app.css";
 
@@ -29,29 +31,57 @@ const ScoreBox = (props) => {
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 const PlaySquare = (props) => {
+  const imgElement =
+    props.mark !== "" ? (
+      props.mark === "x" ? (
+        <img src={iconX} />
+      ) : (
+        <img src={iconO} />
+      )
+    ) : (
+      <span></span>
+    );
   return (
-    <div className="play-square" id={"square-" + props.id.toString()}>
-      square {props.id}
+    <div
+      className="play-square"
+      id={"square-" + props.id.toString()}
+      onClick={() => {
+        props.clickfunction(props.id);
+      }}
+    >
+      {imgElement}
     </div>
   );
 };
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-const BannerModal = ({ show, parameters }) => {
+///////////////////////////////////////////////////////////////////////////////////////////
+
+const BannerModal = ({ show, hideModal, resetFunction, parameters }) => {
   const showHideClassName = show ? "open" : "closed";
+  var button1Function;
+  var button2Function;
+  if (parameters.hideModalButton === "button1") {
+    button1Function = hideModal;
+    button2Function = resetFunction;
+  } else {
+    button2Function = hideModal;
+    button1Function = resetFunction;
+  }
+
   return (
     <div className={"banner-modal " + showHideClassName}>
       <h2>{parameters.heading}</h2>
       <Button
-        clickfunction={parameters.button1Function}
+        clickfunction={button1Function}
         parameters={null}
         color="btn-silver"
         size="btn-secondary"
         label={parameters.button1Text}
       />
       <Button
-        clickfunction={parameters.button2Function}
+        clickfunction={button2Function}
         parameters={null}
         color="btn-yellow"
         size="btn-secondary"
@@ -110,10 +140,27 @@ const NewGameDisplay = (props) => {
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 const GameDisplay = (props) => {
+  const [turnMark, setTurnMark] = useState("x");
+  const [squareMarks, setSquareMarks] = useState([
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+  ]);
+  const [winnerMark, setWinnerMark] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  const [roundInProgress, setRoundInProgress] = useState(true);
-
-  const handleRoundEnd = () => {};
+  const [modalParameters, setModalParameters] = useState({
+    pText: null,
+    heading: "restart game?",
+    hideModalButton: "button1",
+    button1Text: "no, cancel",
+    button2Text: "yes, restart",
+  });
 
   const showModal = () => {
     setModalOpen(true);
@@ -121,24 +168,100 @@ const GameDisplay = (props) => {
 
   const hideModal = () => {
     setModalOpen(false);
+    // reset modal to the restart button style
+    // whenever it is closed
+    setModalParameters({
+      pText: null,
+      heading: "restart game?",
+      hideModalButton: "button1",
+      button1Text: "no, cancel",
+      button2Text: "yes, restart",
+    });
+
+    // when the modal was shown due to a winner, reset the board
+    if (winnerMark !== "") {
+      setWinnerMark("");
+      setTurnMark("x");
+      setSquareMarks(["", "", "", "", "", "", "", "", ""]);
+    }
   };
 
-  const resetModalParameters = {
-    heading: "restart game?",
-    button1Text: "no, cancel",
-    button1Function: hideModal,
-    button2Text: "yes, restart",
-    button2Function: props.resetFunction,
+  const handleWinner = (winnerMark) => {
+    setWinnerMark(winnerMark);
+    props.scoreFunction(winnerMark);
+    console.log("winning a game");
+    setModalParameters({
+      pText: "someone won",
+      heading: "takes the round",
+      hideModalButton: "button2",
+      button1Text: "quit",
+      button2Text: "next round",
+    });
+    showModal();
+  };
+
+  const testForWin = () => {
+    console.log("testing for win");
+    const winningLines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    let i = 0;
+    let win = false;
+    while (!win && i < winningLines.length) {
+      if (
+        squareMarks[winningLines[i][0]] === squareMarks[winningLines[i][1]] &&
+        squareMarks[winningLines[i][1]] === squareMarks[winningLines[i][2]] &&
+        squareMarks[winningLines[i][0]] === turnMark
+      ) {
+        console.log("got a winner on", winningLines[i]);
+        win = true;
+        handleWinner(turnMark);
+        return;
+      }
+      i++;
+    }
+
+    if (turnMark === "x") {
+      setTurnMark("o");
+    } else {
+      setTurnMark("x");
+    }
+  };
+
+  const handleMark = (id) => {
+    var newSquareMarks = squareMarks;
+    newSquareMarks[id] = turnMark;
+    setSquareMarks(newSquareMarks);
+    testForWin();
   };
 
   const playSquares = [];
-  for (let i = 1; i < 10; i++) {
-    playSquares.push(<PlaySquare key={i} id={i} />);
+  for (let i = 0; i < 9; i++) {
+    playSquares.push(
+      <PlaySquare
+        key={i}
+        id={i}
+        mark={squareMarks[i]}
+        clickfunction={squareMarks[i] === "" ? handleMark : () => {}}
+      />
+    );
   }
 
   return (
     <div>
-      <BannerModal show={modalOpen} parameters={resetModalParameters} />
+      <BannerModal
+        show={modalOpen}
+        hideModal={hideModal}
+        resetFunction={props.resetFunction}
+        parameters={modalParameters}
+      />
       <div className="game-display">
         <div className="game-display__icons">xo</div>
         <div className="game-display__turn-display">turn</div>
@@ -158,15 +281,10 @@ const GameDisplay = (props) => {
         <ScoreBox player="ties" score={props.score.ties} color="silver" />
         <ScoreBox
           player={"o (" + props.players.o + ")"}
-          score={props.score.x}
+          score={props.score.o}
           color="yellow"
         />
       </div>
-      <button onClick={() => props.scoreFunction("x")}>score for x</button>
-      <button onClick={() => props.scoreFunction("o")}>score for y</button>
-      <button onClick={() => props.scoreFunction("ties")}>
-        score for ties
-      </button>
     </div>
   );
 };

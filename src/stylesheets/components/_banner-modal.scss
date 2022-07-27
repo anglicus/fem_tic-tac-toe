@@ -1,0 +1,15 @@
+// banner-modal.scss
+
+.banner-modal {
+  position: absolute;
+  background-color: red;
+  width: 100%;
+
+  &.closed {
+    display: none;
+  }
+
+  &.open {
+    display: block;
+  }
+}

@@ -2,6 +2,8 @@
 
 @use "./components/buttons";
 @use "./components/score-box";
+@use "./components/play-square";
+@use "./components/banner-modal";
 
 // layout
 @use "./layout/game-display";
