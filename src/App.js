@@ -13,7 +13,7 @@ import "./css/app.css";
 
 function App() {
   // state variables //////////////////////////////////////////////////////////////////////
-  const [gameInProgress, setGameInProgress] = useState(false);
+  const [newGame, setNewGame] = useState(true); // true => show NewGameDisplay
   const [boardState, setBoardState] = useState([
     "",
     "",
@@ -34,7 +34,6 @@ function App() {
   });
 
   const [turnMark, setTurnMark] = useState("x");
-  const [turnCount, setTurnCount] = useState(0);
   const [winnerMark, setWinnerMark] = useState("");
 
   // modal functions //////////////////////////////////////////////////////////////////////
@@ -63,7 +62,7 @@ function App() {
   // and also hides the modal, which would be left
   // open if the restart or quit buttons are used
   const handleReset = () => {
-    setGameInProgress(false);
+    setNewGame(true);
     hideModal();
   };
 
@@ -84,11 +83,10 @@ function App() {
       newPlayerSettings.o = playerOptions.players.p1;
       newPlayerSettings.x = playerOptions.players.p2;
     }
-    setGameInProgress(true);
+    setNewGame(false);
     setBoardState(["", "", "", "", "", "", "", "", ""]);
     setScore({ x: 0, o: 0, ties: 0 });
     setTurnMark("x");
-    setTurnCount(0);
     setPlayers({ x: newPlayerSettings.x, o: newPlayerSettings.o });
   };
 
@@ -99,7 +97,6 @@ function App() {
     var newBoardState = boardState;
     newBoardState[id] = turnMark;
     setBoardState(newBoardState);
-    setTurnCount(turnCount + 1);
     testForWin();
   };
 
@@ -124,30 +121,38 @@ function App() {
     setWinnerMark(winnerMark);
     handleIncrementScore(winnerMark);
 
-    let winningPText = "";
-    switch (players[winnerMark]) {
-      case "cpu":
-        winningPText = "oh no, you lost...";
-        break;
-      case "you":
-        winningPText = "you won!";
-        break;
-      default:
-        winningPText = "player " + players[winnerMark][1] + " wins!";
-    }
+    let winningPElement;
+    let winningHeading = "";
+    let winningIcon;
 
-    const pElement = <p>{winningPText}</p>;
+    if (winnerMark !== "ties") {
+      switch (players[winnerMark]) {
+        case "cpu":
+          winningPElement = <p>oh no, you lost...</p>;
+          break;
+        case "you":
+          winningPElement = <p>you won!</p>;
+          break;
+        default:
+          winningPElement = <p>player {players[winnerMark][1]} wins!</p>;
+      }
 
-    showModal({
-      show: true,
-      pElement: pElement,
-      winIcon:
+      winningHeading = "takes the round";
+      winningIcon =
         winnerMark === "x" ? (
           <img src={iconX} alt="x icon" className="xo-icon" />
         ) : (
           <img src={iconO} alt="o icon" className="xo-icon" />
-        ),
-      heading: "takes the round",
+        );
+    } else {
+      winningHeading = "round tied";
+    }
+
+    showModal({
+      show: true,
+      pElement: winningPElement,
+      winIcon: winningIcon,
+      heading: winningHeading,
       hideModalButton: "button2",
       button1Text: "quit",
       button2Text: "next round",
@@ -157,33 +162,45 @@ function App() {
   // testForWin
   // test for win (tie yet to be implemented)
   const testForWin = () => {
-    const winningLines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-    let i = 0;
-    let win = false;
-    while (!win && i < winningLines.length) {
-      if (
-        boardState[winningLines[i][0]] === boardState[winningLines[i][1]] &&
-        boardState[winningLines[i][1]] === boardState[winningLines[i][2]] &&
-        boardState[winningLines[i][0]] === turnMark
-      ) {
-        win = true;
-        handleWinner(turnMark);
-        return;
+    // find how many turns have been taken based on empty spaces
+    let turnCount =
+      9 -
+      boardState.filter((el) => {
+        return el === "";
+      }).length;
+
+    // if at least 3 turns haven't been taken, just skip this step
+    if (turnCount > 3) {
+      const winningLines = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6],
+      ];
+      let i = 0;
+      let win = false;
+      while (!win && i < winningLines.length) {
+        if (
+          boardState[winningLines[i][0]] === boardState[winningLines[i][1]] &&
+          boardState[winningLines[i][1]] === boardState[winningLines[i][2]] &&
+          boardState[winningLines[i][0]] === turnMark
+        ) {
+          win = true;
+          handleWinner(turnMark);
+          return;
+        }
+        i++;
       }
-      i++;
     }
 
-    if (!win && turnCount === 9) {
+    // if a win wasn't encountered above, but 9 turns have been taken then it must be a tie
+    if (turnCount === 9) {
       console.log("it's a tie!!!");
+      handleWinner("ties");
     }
 
     if (turnMark === "x") {
@@ -194,7 +211,11 @@ function App() {
   };
 
   // display //////////////////////////////////////////////////////////////////////////////
-  if (gameInProgress) {
+  if (newGame) {
+    return (
+      <NewGameDisplay startGame={handleStartGame} iconX={iconX} iconO={iconO} />
+    );
+  } else {
     return (
       <div>
         <BannerModal
@@ -214,10 +235,6 @@ function App() {
           iconO={iconO}
         />
       </div>
-    );
-  } else {
-    return (
-      <NewGameDisplay startGame={handleStartGame} iconX={iconX} iconO={iconO} />
     );
   }
 }
