@@ -3,8 +3,8 @@
 import React from "react";
 import Button from "./button";
 
-const BannerModal = ({ show, hideModal, resetFunction, parameters }) => {
-  const showHideClassName = show ? "open" : "closed";
+const BannerModal = ({ hideModal, resetFunction, parameters }) => {
+  const showHideClassName = parameters.show ? "open" : "closed";
   var button1Function;
   var button2Function;
   if (parameters.hideModalButton === "button1") {

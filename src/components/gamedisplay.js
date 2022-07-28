@@ -23,29 +23,17 @@ const GameDisplay = (props) => {
     "",
   ]);
   const [winnerMark, setWinnerMark] = useState("");
-  const [modalOpen, setModalOpen] = useState(false);
   const [modalParameters, setModalParameters] = useState({
-    pText: null,
-    heading: "restart game?",
-    hideModalButton: "button1",
-    button1Text: "no, cancel",
-    button2Text: "yes, restart",
+    show: false,
   });
 
-  const showModal = () => {
-    setModalOpen(true);
+  const showModal = (parameters) => {
+    setModalParameters(parameters);
   };
 
   const hideModal = () => {
-    setModalOpen(false);
-    // reset modal to the restart button style
-    // whenever it is closed
     setModalParameters({
-      pText: null,
-      heading: "restart game?",
-      hideModalButton: "button1",
-      button1Text: "no, cancel",
-      button2Text: "yes, restart",
+      show: false,
     });
 
     // when the modal was shown due to a winner, reset the board
@@ -60,14 +48,14 @@ const GameDisplay = (props) => {
     setWinnerMark(winnerMark);
     props.scoreFunction(winnerMark);
     console.log("winning a game");
-    setModalParameters({
+    showModal({
+      show: true,
       pText: "someone won",
       heading: "takes the round",
       hideModalButton: "button2",
       button1Text: "quit",
       button2Text: "next round",
     });
-    showModal();
   };
 
   const testForWin = () => {
@@ -127,7 +115,6 @@ const GameDisplay = (props) => {
   return (
     <div>
       <BannerModal
-        show={modalOpen}
         hideModal={hideModal}
         resetFunction={props.resetFunction}
         parameters={modalParameters}
@@ -139,8 +126,15 @@ const GameDisplay = (props) => {
         </div>
         <div className="game-display__turn-display">turn</div>
         <Button
-          clickfunction={showModal} // {props.resetFunction}
-          parameters={null}
+          clickfunction={showModal}
+          parameters={{
+            show: true,
+            pText: null,
+            heading: "restart game?",
+            hideModalButton: "button1",
+            button1Text: "no, cancel",
+            button2Text: "yes, restart",
+          }}
           color="btn-silver"
           size="btn-reset"
           label=""
