@@ -3,9 +3,6 @@
 import React, { useState } from "react";
 import Button from "./button";
 
-import iconX from "../assets/icon-x.svg";
-import iconO from "../assets/icon-o.svg";
-
 const NewGameDisplay = (props) => {
   const [marks, setMarks] = useState({ p1: "x", p2: "o" });
 
@@ -20,8 +17,8 @@ const NewGameDisplay = (props) => {
   return (
     <div className="newgame-display">
       <div className="newgame-display__icons">
-        <img src={iconX} alt="x-icon" className="xo-icon" />
-        <img src={iconO} alt="o-icon" className="xo-icon" />
+        <img src={props.iconX} alt="x-icon" className="xo-icon" />
+        <img src={props.iconO} alt="o-icon" className="xo-icon" />
       </div>
       <div className="player-mark-chooser">
         <h1>Pick player 1's mark</h1>

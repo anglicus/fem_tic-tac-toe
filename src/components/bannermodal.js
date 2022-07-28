@@ -17,6 +17,8 @@ const BannerModal = ({ hideModal, resetFunction, parameters }) => {
 
   return (
     <div className={"banner-modal " + showHideClassName}>
+      {parameters.pElement}
+      {parameters.winIcon}
       <h2>{parameters.heading}</h2>
       <Button
         clickFunction={button1Function}

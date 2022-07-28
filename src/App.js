@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import NewGameDisplay from "./components/newgamedisplay";
 import GameDisplay from "./components/gamedisplay";
 import BannerModal from "./components/bannermodal";
+
+import iconX from "./assets/icon-x.svg";
+import iconO from "./assets/icon-o.svg";
 
 import "./css/app.css";
 
@@ -31,6 +34,7 @@ function App() {
   });
 
   const [turnMark, setTurnMark] = useState("x");
+  const [turnCount, setTurnCount] = useState(0);
   const [winnerMark, setWinnerMark] = useState("");
 
   // modal functions //////////////////////////////////////////////////////////////////////
@@ -44,6 +48,7 @@ function App() {
     });
 
     // when the modal was shown due to a winner, reset the board
+    // and return to "x" turn
     if (winnerMark !== "") {
       setWinnerMark("");
       setTurnMark("x");
@@ -53,6 +58,7 @@ function App() {
 
   // game state functions //////////////////////////////////////////////////////////////////////
 
+  // handleReset
   // will cause App to render NewGameDisplay
   // and also hides the modal, which would be left
   // open if the restart or quit buttons are used
@@ -61,6 +67,7 @@ function App() {
     hideModal();
   };
 
+  // handleStartGame
   // resets all game data and inputs player
   // names based on the NewGameDisplay
   const handleStartGame = (playerOptions) => {
@@ -80,18 +87,23 @@ function App() {
     setGameInProgress(true);
     setBoardState(["", "", "", "", "", "", "", "", ""]);
     setScore({ x: 0, o: 0, ties: 0 });
+    setTurnMark("x");
+    setTurnCount(0);
     setPlayers({ x: newPlayerSettings.x, o: newPlayerSettings.o });
   };
 
+  // handleTurn
   // when a PlaySquare is clicked, it invokes this function
   // and sends its own number (id)
   const handleTurn = (id) => {
     var newBoardState = boardState;
     newBoardState[id] = turnMark;
     setBoardState(newBoardState);
+    setTurnCount(turnCount + 1);
     testForWin();
   };
 
+  // handleIncrementScore
   // at the end of a round, increase the score counter
   // for the mark of the winning player (or "ties" if tied)
   const handleIncrementScore = (scoringMark) => {
@@ -106,14 +118,35 @@ function App() {
     setScore(newScore);
   };
 
+  // handleWinner
   // when a winner (or tie) is determined
   const handleWinner = (winnerMark) => {
     setWinnerMark(winnerMark);
     handleIncrementScore(winnerMark);
-    console.log("winning a game");
+
+    let winningPText = "";
+    switch (players[winnerMark]) {
+      case "cpu":
+        winningPText = "oh no, you lost...";
+        break;
+      case "you":
+        winningPText = "you won!";
+        break;
+      default:
+        winningPText = "player " + players[winnerMark][1] + " wins!";
+    }
+
+    const pElement = <p>{winningPText}</p>;
+
     showModal({
       show: true,
-      pText: "someone won",
+      pElement: pElement,
+      winIcon:
+        winnerMark === "x" ? (
+          <img src={iconX} alt="x icon" className="xo-icon" />
+        ) : (
+          <img src={iconO} alt="o icon" className="xo-icon" />
+        ),
       heading: "takes the round",
       hideModalButton: "button2",
       button1Text: "quit",
@@ -121,9 +154,9 @@ function App() {
     });
   };
 
+  // testForWin
   // test for win (tie yet to be implemented)
   const testForWin = () => {
-    console.log("testing for win");
     const winningLines = [
       [0, 1, 2],
       [3, 4, 5],
@@ -142,12 +175,15 @@ function App() {
         boardState[winningLines[i][1]] === boardState[winningLines[i][2]] &&
         boardState[winningLines[i][0]] === turnMark
       ) {
-        console.log("got a winner on", winningLines[i]);
         win = true;
         handleWinner(turnMark);
         return;
       }
       i++;
+    }
+
+    if (!win && turnCount === 9) {
+      console.log("it's a tie!!!");
     }
 
     if (turnMark === "x") {
@@ -174,11 +210,15 @@ function App() {
           showModal={showModal}
           resetFunction={handleReset}
           scoreFunction={handleIncrementScore}
+          iconX={iconX}
+          iconO={iconO}
         />
       </div>
     );
   } else {
-    return <NewGameDisplay startGame={handleStartGame} />;
+    return (
+      <NewGameDisplay startGame={handleStartGame} iconX={iconX} iconO={iconO} />
+    );
   }
 }
 

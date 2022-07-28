@@ -1,12 +1,9 @@
 // gamedisplay.js
 
-import React, { useState } from "react";
+import React from "react";
 import Button from "./button";
 import ScoreBox from "./scorebox";
 import PlaySquare from "./playsquare";
-
-import iconX from "../assets/icon-x.svg";
-import iconO from "../assets/icon-o.svg";
 
 const GameDisplay = (props) => {
   const playSquares = [];
@@ -25,15 +22,14 @@ const GameDisplay = (props) => {
     <div>
       <div className="game-display">
         <div className="game-display__icons">
-          <img src={iconX} alt="x-icon" className="xo-icon" />
-          <img src={iconO} alt="o-icon" className="xo-icon" />
+          <img src={props.iconX} alt="x-icon" className="xo-icon" />
+          <img src={props.iconO} alt="o-icon" className="xo-icon" />
         </div>
         <div className="game-display__turn-display">turn</div>
         <Button
           clickFunction={props.showModal}
           functionParameters={{
             show: true,
-            pText: null,
             heading: "restart game?",
             hideModalButton: "button1",
             button1Text: "no, cancel",
