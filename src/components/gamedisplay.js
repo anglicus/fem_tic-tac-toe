@@ -126,8 +126,8 @@ const GameDisplay = (props) => {
         </div>
         <div className="game-display__turn-display">turn</div>
         <Button
-          clickfunction={showModal}
-          parameters={{
+          clickFunction={showModal}
+          functionParameters={{
             show: true,
             pText: null,
             heading: "restart game?",
@@ -135,8 +135,8 @@ const GameDisplay = (props) => {
             button1Text: "no, cancel",
             button2Text: "yes, restart",
           }}
-          color="btn-silver"
-          size="btn-reset"
+          colorClass="btn-silver"
+          sizeClass="btn-reset"
           label=""
         />
         {playSquares}

@@ -5,8 +5,8 @@ import React from "react";
 const Button = (props) => {
   return (
     <button
-      onClick={() => props.clickfunction(props.parameters)}
-      className={`btn-global ${props.color} ${props.size}`}
+      onClick={() => props.clickFunction(props.functionParameters)}
+      className={`btn-global ${props.colorClass} ${props.sizeClass}`}
     >
       {props.label}
     </button>

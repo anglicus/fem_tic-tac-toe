@@ -32,17 +32,20 @@ const NewGameDisplay = (props) => {
       </div>
       <div className="newgame-display__button-div">
         <Button
-          clickfunction={props.startGame}
-          parameters={{ marks: marks, players: { p1: "you", p2: "cpu" } }}
-          color="btn-yellow"
-          size="btn-primary"
+          clickFunction={props.startGame}
+          functionParameters={{
+            marks: marks,
+            players: { p1: "you", p2: "cpu" },
+          }}
+          colorClass="btn-yellow"
+          sizeClass="btn-primary"
           label="new game (vs cpu)"
         />
         <Button
-          clickfunction={props.startGame}
-          parameters={{ marks: marks, players: { p1: "p1", p2: "p2" } }}
-          color="btn-blue"
-          size="btn-primary"
+          clickFunction={props.startGame}
+          functionParameters={{ marks: marks, players: { p1: "p1", p2: "p2" } }}
+          colorClass="btn-blue"
+          sizeClass="btn-primary"
           label="new game (vs player)"
         />
       </div>

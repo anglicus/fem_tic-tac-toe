@@ -19,15 +19,15 @@ const BannerModal = ({ hideModal, resetFunction, parameters }) => {
     <div className={"banner-modal " + showHideClassName}>
       <h2>{parameters.heading}</h2>
       <Button
-        clickfunction={button1Function}
-        parameters={null}
+        clickFunction={button1Function}
+        functionParameters={null}
         color="btn-silver"
         size="btn-secondary"
         label={parameters.button1Text}
       />
       <Button
-        clickfunction={button2Function}
-        parameters={null}
+        clickFunction={button2Function}
+        functionParameters={null}
         color="btn-yellow"
         size="btn-secondary"
         label={parameters.button2Text}
