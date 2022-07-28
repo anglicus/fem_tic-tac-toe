@@ -7,13 +7,13 @@ import iconX from "../assets/icon-x.svg";
 import iconO from "../assets/icon-o.svg";
 
 const NewGameDisplay = (props) => {
-  const [mark, setMark] = useState("x");
+  const [marks, setMarks] = useState({ p1: "x", p2: "o" });
 
   const updateOptions = (e) => {
     if (e.target.checked) {
-      setMark("o");
+      setMarks({ p1: "o", p2: "x" });
     } else {
-      setMark("x");
+      setMarks({ p1: "x", p2: "o" });
     }
   };
 
@@ -33,14 +33,14 @@ const NewGameDisplay = (props) => {
       <div className="newgame-display__button-div">
         <Button
           clickfunction={props.startGame}
-          parameters={{ p1: mark, p2: "cpu" }}
+          parameters={{ marks: marks, players: { p1: "you", p2: "cpu" } }}
           color="btn-yellow"
           size="btn-primary"
           label="new game (vs cpu)"
         />
         <Button
           clickfunction={props.startGame}
-          parameters={{ p1: mark, p2: "p2" }}
+          parameters={{ marks: marks, players: { p1: "p1", p2: "p2" } }}
           color="btn-blue"
           size="btn-primary"
           label="new game (vs player)"
