@@ -3,7 +3,7 @@
 import React from "react";
 import Button from "./button";
 
-const BannerModal = ({ hideModal, resetFunction, parameters }) => {
+const BannerModal = ({ hideModal, resetFunction, winnerMark, parameters }) => {
   const showHideClassName = parameters.show ? "open" : "closed";
   var button1Function;
   var button2Function;
@@ -29,7 +29,7 @@ const BannerModal = ({ hideModal, resetFunction, parameters }) => {
       />
       <Button
         clickFunction={button2Function}
-        functionParameters={null}
+        functionParameters={winnerMark}
         colorClass="btn-yellow"
         sizeClass="btn-secondary"
         label={parameters.button2Text}
