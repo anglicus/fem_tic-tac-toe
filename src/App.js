@@ -310,6 +310,7 @@ function App() {
         />
         <GameDisplay
           players={gameState.players}
+          turnMark={gameState.turnMark}
           score={gameState.score}
           boardState={gameState.boardState}
           handleTurn={handleTurn}

@@ -6,6 +6,9 @@ import ScoreBox from "./scorebox";
 import PlaySquare from "./playsquare";
 
 const GameDisplay = (props) => {
+  const iconX = <img src={props.iconX} alt="x-icon" className="xo-icon" />;
+  const iconO = <img src={props.iconO} alt="o-icon" className="xo-icon" />;
+
   const playSquares = [];
   for (let i = 0; i < 9; i++) {
     playSquares.push(
@@ -22,10 +25,13 @@ const GameDisplay = (props) => {
     <div>
       <div className="game-display">
         <div className="game-display__icons">
-          <img src={props.iconX} alt="x-icon" className="xo-icon" />
-          <img src={props.iconO} alt="o-icon" className="xo-icon" />
+          {iconX}
+          {iconO}
         </div>
-        <div className="game-display__turn-display">turn</div>
+        <div className="game-display__turn-display">
+          {props.turnMark === "x" ? iconX : iconO}
+          <p>turn</p>
+        </div>
         <Button
           clickFunction={props.showModal}
           functionParameters={{
