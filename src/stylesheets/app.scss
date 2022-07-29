@@ -4,6 +4,8 @@
 @use "./components/score-box";
 @use "./components/play-square";
 @use "./components/banner-modal";
+@use "./components/mark-chooser";
 
 // layout
+@use "./layout/newgame-display";
 @use "./layout/game-display";

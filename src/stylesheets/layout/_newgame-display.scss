@@ -1,0 +1,18 @@
+// newgame-display.scss
+
+@use "../abstracts/colors" as *;
+
+.newgame-display {
+  padding: 119px 24px 0;
+  background-color: $darkNavy;
+
+  &__icons {
+    width: min-content;
+    margin: 0 auto;
+  }
+
+  &__chooser-div {
+    padding: 24px;
+    background-color: $semiDarkNavy;
+  }
+}

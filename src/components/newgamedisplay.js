@@ -7,6 +7,7 @@ const NewGameDisplay = (props) => {
   const [marks, setMarks] = useState({ p1: "x", p2: "o" });
 
   const updateOptions = (e) => {
+    console.log("checked");
     if (e.target.checked) {
       setMarks({ p1: "o", p2: "x" });
     } else {
@@ -14,18 +15,35 @@ const NewGameDisplay = (props) => {
     }
   };
 
+  const urlStrX = "URL(" + props.iconX + ")";
+  const urlStrO = "URL(" + props.iconO + ")";
+  const maskImgX = { maskImage: urlStrX };
+  const maskImgO = { maskImage: urlStrO };
+
   return (
-    <div className="newgame-display">
+    <main className="newgame-display">
       <div className="newgame-display__icons">
         <img src={props.iconX} alt="x-icon" className="xo-icon" />
         <img src={props.iconO} alt="o-icon" className="xo-icon" />
       </div>
-      <div className="player-mark-chooser">
-        <h1>Pick player 1's mark</h1>
-        <label htmlFor="xo-chooser" className="switch">
-          <input type="checkbox" onChange={updateOptions}></input>
-        </label>
-        <p>remember : x goes first</p>
+      <div className="newgame-display__chooser-div">
+        <div className="newgame-display__mark-chooser">
+          <h1 className="newgame-display__heading">Pick player 1's mark</h1>
+          <label className="mark-chooser">
+            <input
+              type="checkbox"
+              className="mark-chooser__checkbox"
+              onChange={updateOptions}
+            ></input>
+            <div className="mark-chooser__section x-section">
+              <span className="mark-chooser__span" style={maskImgX}></span>
+            </div>
+            <div className="mark-chooser__section o-section">
+              <span className="mark-chooser__span" style={maskImgO}></span>
+            </div>
+          </label>
+          <p className="newgame-display__reminder">remember : x goes first</p>
+        </div>
       </div>
       <div className="newgame-display__button-div">
         <Button
@@ -46,7 +64,7 @@ const NewGameDisplay = (props) => {
           label="new game (vs player)"
         />
       </div>
-    </div>
+    </main>
   );
 };
 
