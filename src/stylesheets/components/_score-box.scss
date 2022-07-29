@@ -5,15 +5,15 @@
 .score-box {
   border-radius: 10px;
 
-  &.yellow {
+  &--yellow {
     background-color: $lightYellow;
   }
 
-  &.blue {
+  &--blue {
     background-color: $lightBlue;
   }
 
-  &.silver {
+  &--silver {
     background-color: $silver;
   }
 }

@@ -5,6 +5,8 @@ import Button from "./button";
 import ScoreBox from "./scorebox";
 import PlaySquare from "./playsquare";
 
+import restartIcon from "../assets/icon-restart.svg";
+
 const GameDisplay = (props) => {
   const iconX = <img src={props.iconX} alt="x-icon" className="xo-icon" />;
   const iconO = <img src={props.iconO} alt="o-icon" className="xo-icon" />;
@@ -41,21 +43,26 @@ const GameDisplay = (props) => {
             button1Text: "no, cancel",
             button2Text: "yes, restart",
           }}
-          colorClass="btn-silver"
-          sizeClass="btn-reset"
-          label=""
+          layoutClass="game-display__btn-reset"
+          colorClass="btn--silver"
+          sizeClass="btn--square"
+          label={<img src={restartIcon} alt="restart icon" />}
         />
         {playSquares}
         <ScoreBox
           player={"x (" + props.players.x + ")"}
           score={props.score.x}
-          color="blue"
+          colorClass="score-box--blue"
         />
-        <ScoreBox player="ties" score={props.score.ties} color="silver" />
+        <ScoreBox
+          player="ties"
+          score={props.score.ties}
+          colorClass="score-box--silver"
+        />
         <ScoreBox
           player={"o (" + props.players.o + ")"}
           score={props.score.o}
-          color="yellow"
+          colorClass="score-box--yellow"
         />
       </div>
     </div>

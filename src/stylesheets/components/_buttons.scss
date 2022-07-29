@@ -4,7 +4,7 @@
 @use "../abstracts/mixins" as *;
 
 // global properties
-.btn-global {
+.btn--global {
   cursor: pointer;
   border: none;
   padding: var(--padding-top) var(--padding-right) var(--padding-bottom)
@@ -24,26 +24,26 @@
 }
 
 // set colors
-.btn-yellow {
+.btn--yellow {
   background-color: $lightYellow;
   --shadow-color: #{$lightYellowShadow};
   --hover-color: #{$lightYellowHover};
 }
 
-.btn-blue {
+.btn--blue {
   background-color: $lightBlue;
   --shadow-color: #{$lightBlueShadow};
   --hover-color: #{$lightBlueHover};
 }
 
-.btn-silver {
+.btn--silver {
   background-color: $silver;
   --shadow-color: #{$silverShadow};
   --hover-color: #{$silverHover};
 }
 
 // set sizes
-.btn-primary {
+.btn--primary {
   height: 56px;
   width: 100%; // stretch to fill its parent
   --padding-top: 14px;
@@ -61,7 +61,7 @@
   }
 }
 
-.btn-secondary {
+.btn--secondary {
   height: 52px;
   // width will depend on contents
   --padding-top: 15px;
@@ -74,7 +74,7 @@
   // same size on all screens
 }
 
-.btn-reset {
+.btn--square {
   width: 40px;
   height: 40px;
   --padding-top: 12px;

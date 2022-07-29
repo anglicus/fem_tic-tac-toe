@@ -6,7 +6,7 @@ const Button = (props) => {
   return (
     <button
       onClick={() => props.clickFunction(props.functionParameters)}
-      className={`btn-global ${props.colorClass} ${props.sizeClass}`}
+      className={`btn--global ${props.layoutClass} ${props.colorClass} ${props.sizeClass}`}
     >
       {props.label}
     </button>

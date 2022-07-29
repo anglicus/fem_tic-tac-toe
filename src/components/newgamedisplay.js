@@ -34,15 +34,15 @@ const NewGameDisplay = (props) => {
             marks: marks,
             players: { p1: "you", p2: "cpu" },
           }}
-          colorClass="btn-yellow"
-          sizeClass="btn-primary"
+          colorClass="btn--yellow"
+          sizeClass="btn--primary"
           label="new game (vs cpu)"
         />
         <Button
           clickFunction={props.startGame}
           functionParameters={{ marks: marks, players: { p1: "p1", p2: "p2" } }}
-          colorClass="btn-blue"
-          sizeClass="btn-primary"
+          colorClass="btn--blue"
+          sizeClass="btn--primary"
           label="new game (vs player)"
         />
       </div>
