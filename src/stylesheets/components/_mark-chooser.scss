@@ -9,6 +9,7 @@
   height: 72px;
   border-radius: 10px;
   padding: 8px;
+
   background-color: $darkNavy;
 
   &__checkbox {
@@ -21,18 +22,19 @@
     width: 50%;
     height: 100%;
     border-radius: 10px;
-    cursor: pointer;
 
-    &.x-section {
+    &.o-section {
       background-color: $silver;
+      cursor: pointer;
 
       & > .mark-chooser__span {
         background-color: $darkNavy;
       }
     }
 
-    &.o-section {
+    &.x-section {
       background-color: $darkNavy;
+      cursor: default;
 
       & > .mark-chooser__span {
         background-color: $silver;
@@ -52,18 +54,18 @@
     mask-size: 32px;
   }
 
-  &__checkbox:checked ~ .o-section {
+  &__checkbox:checked ~ .x-section {
     background-color: $silver;
-    cursor: pointer;
+    cursor: default;
 
     & > .mark-chooser__span {
       background-color: $darkNavy;
     }
   }
 
-  &__checkbox:checked ~ .x-section {
+  &__checkbox:checked ~ .o-section {
     background-color: $darkNavy;
-    cursor: default;
+    cursor: pointer;
 
     & > .mark-chooser__span {
       background-color: $silver;

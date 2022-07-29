@@ -6,10 +6,13 @@ html {
   font-size: 100%;
 }
 
-// user name
+// newgame screen picker
 h1 {
-  font-size: 1.5rem;
-  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.26rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 
   @include breakpoint-up(medium) {
     font-size: 2.5rem;
@@ -38,10 +41,11 @@ h3 {
   }
 }
 
-// 'report for' and previous hours
 p {
-  font-size: 0.9375rem;
-  font-weight: 400;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.88px;
+  text-transform: uppercase;
 
   // same on all screen sizes
 }

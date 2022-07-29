@@ -27,23 +27,21 @@ const NewGameDisplay = (props) => {
         <img src={props.iconO} alt="o-icon" className="xo-icon" />
       </div>
       <div className="newgame-display__chooser-div">
-        <div className="newgame-display__mark-chooser">
-          <h1 className="newgame-display__heading">Pick player 1's mark</h1>
-          <label className="mark-chooser">
-            <input
-              type="checkbox"
-              className="mark-chooser__checkbox"
-              onChange={updateOptions}
-            ></input>
-            <div className="mark-chooser__section x-section">
-              <span className="mark-chooser__span" style={maskImgX}></span>
-            </div>
-            <div className="mark-chooser__section o-section">
-              <span className="mark-chooser__span" style={maskImgO}></span>
-            </div>
-          </label>
-          <p className="newgame-display__reminder">remember : x goes first</p>
-        </div>
+        <h1 className="newgame-display__heading">Pick player 1's mark</h1>
+        <label className="mark-chooser">
+          <input
+            type="checkbox"
+            className="mark-chooser__checkbox"
+            onChange={updateOptions}
+          ></input>
+          <div className="mark-chooser__section x-section">
+            <span className="mark-chooser__span" style={maskImgX}></span>
+          </div>
+          <div className="mark-chooser__section o-section">
+            <span className="mark-chooser__span" style={maskImgO}></span>
+          </div>
+        </label>
+        <p className="newgame-display__reminder">remember : x goes first</p>
       </div>
       <div className="newgame-display__button-div">
         <Button
