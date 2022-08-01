@@ -3,3 +3,8 @@
 @use "../abstracts/colors" as *;
 @use "../abstracts/mixins" as *;
 
+.main {
+  background-color: $darkNavy;
+  height: 100vh;
+  padding: 0 24px;
+}

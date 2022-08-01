@@ -7,5 +7,6 @@
 @use "./components/mark-chooser";
 
 // layout
+@use "layout/main";
 @use "./layout/newgame-display";
 @use "./layout/game-display";

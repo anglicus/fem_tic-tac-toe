@@ -245,8 +245,8 @@ function App() {
     // find how many turns have been taken based on empty spaces
     let turnCount =
       9 -
-      gameVars.boardState.filter((el) => {
-        return el === "";
+      gameVars.boardState.filter((square) => {
+        return square === "";
       }).length;
 
     // if at least 3 turns haven't been taken, just skip this step
@@ -297,11 +297,17 @@ function App() {
   // display //////////////////////////////////////////////////////////////////////////////
   if (gameState.newGame) {
     return (
-      <NewGameDisplay startGame={handleStartGame} iconX={iconX} iconO={iconO} />
+      <main className="main">
+        <NewGameDisplay
+          startGame={handleStartGame}
+          iconX={iconX}
+          iconO={iconO}
+        />
+      </main>
     );
   } else {
     return (
-      <div>
+      <main className="main">
         <BannerModal
           hideModal={hideModal}
           resetFunction={handleReset}
@@ -315,11 +321,10 @@ function App() {
           boardState={gameState.boardState}
           handleTurn={handleTurn}
           showModal={showModal}
-          resetFunction={handleReset}
           iconX={iconX}
           iconO={iconO}
         />
-      </div>
+      </main>
     );
   }
 }

@@ -102,9 +102,23 @@
   --shadow-width: -8px;
   height: 95px;
   width: 96px;
+  padding: 24px 28px 32px 28px;
   border-radius: 10px;
   -webkit-box-shadow: inset 0 var(--shadow-width) 0 0 #10212a;
           box-shadow: inset 0 var(--shadow-width) 0 0 #10212a;
+}
+.play-square > img {
+  width: 40px;
+  height: 40px;
+}
+.play-square__outline {
+  display: none;
+}
+.play-square--marked > .play-square__outline {
+  display: none;
+}
+.play-square--empty:hover > .play-square__outline {
+  display: block;
 }
 
 .banner-modal {
@@ -139,18 +153,18 @@
   height: 100%;
   border-radius: 10px;
 }
-.mark-chooser__section.o-section {
-  background-color: #a8bfc9;
-  cursor: pointer;
-}
-.mark-chooser__section.o-section > .mark-chooser__span {
-  background-color: #1a2a33;
-}
 .mark-chooser__section.x-section {
-  background-color: #1a2a33;
+  background-color: #a8bfc9;
   cursor: default;
 }
 .mark-chooser__section.x-section > .mark-chooser__span {
+  background-color: #1a2a33;
+}
+.mark-chooser__section.o-section {
+  background-color: #1a2a33;
+  cursor: pointer;
+}
+.mark-chooser__section.o-section > .mark-chooser__span {
   background-color: #a8bfc9;
 }
 .mark-chooser__span {
@@ -166,25 +180,29 @@
   -webkit-mask-size: 32px;
           mask-size: 32px;
 }
-.mark-chooser__checkbox:checked ~ .x-section {
+.mark-chooser__checkbox:checked ~ .o-section {
   background-color: #a8bfc9;
   cursor: default;
 }
-.mark-chooser__checkbox:checked ~ .x-section > .mark-chooser__span {
+.mark-chooser__checkbox:checked ~ .o-section > .mark-chooser__span {
   background-color: #1a2a33;
 }
-.mark-chooser__checkbox:checked ~ .o-section {
+.mark-chooser__checkbox:checked ~ .x-section {
   background-color: #1a2a33;
   cursor: pointer;
 }
-.mark-chooser__checkbox:checked ~ .o-section > .mark-chooser__span {
+.mark-chooser__checkbox:checked ~ .x-section > .mark-chooser__span {
   background-color: #a8bfc9;
 }
 
-.newgame-display {
-  padding: 119px 24px 0;
-  height: 100vh;
+.main {
   background-color: #1a2a33;
+  height: 100vh;
+  padding: 0 24px;
+}
+
+.newgame-display {
+  padding-top: 119px;
 }
 .newgame-display__icons {
   display: -webkit-box;
@@ -229,10 +247,38 @@
 }
 
 .game-display {
+  padding-top: 24px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   -webkit-column-gap: 20px;
      -moz-column-gap: 20px;
           column-gap: 20px;
   row-gap: 20px;
+  background-color: #1a2a33;
+}
+.game-display__icons > img {
+  height: 32px;
+  width: 32px;
+}
+.game-display__turn-display {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 15px;
+  background-color: #1f3641;
+  color: #a8bfc9;
+}
+.game-display__turn-display > img {
+  height: 16px;
+  width: 16px;
 }/*# sourceMappingURL=app.css.map */

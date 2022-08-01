@@ -1,10 +1,37 @@
 // _game-display.scss
 
+@use "../abstracts/colors" as *;
 @use "../abstracts/mixins" as *;
 
 .game-display {
+  padding-top: 24px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 20px;
   row-gap: 20px;
+
+  background-color: $darkNavy;
+
+  &__icons {
+    & > img {
+      height: 32px;
+      width: 32px;
+    }
+  }
+
+  &__turn-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+
+    background-color: $semiDarkNavy;
+    color: $silver;
+
+    & > img {
+      height: 16px;
+      width: 16px;
+    }
+  }
 }

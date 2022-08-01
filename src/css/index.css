@@ -86,4 +86,10 @@ button {
 }
 .attribution a {
   color: hsl(228deg, 45%, 44%);
+}
+
+.main {
+  background-color: #1a2a33;
+  height: 100vh;
+  padding: 0 24px;
 }/*# sourceMappingURL=index.css.map */

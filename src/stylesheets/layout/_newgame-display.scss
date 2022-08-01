@@ -3,9 +3,7 @@
 @use "../abstracts/colors" as *;
 
 .newgame-display {
-  padding: 119px 24px 0;
-  height: 100vh;
-  background-color: $darkNavy;
+  padding-top: 119px;
 
   &__icons {
     display: flex;

@@ -23,18 +23,18 @@
     height: 100%;
     border-radius: 10px;
 
-    &.o-section {
+    &.x-section {
       background-color: $silver;
-      cursor: pointer;
+      cursor: default;
 
       & > .mark-chooser__span {
         background-color: $darkNavy;
       }
     }
 
-    &.x-section {
+    &.o-section {
       background-color: $darkNavy;
-      cursor: default;
+      cursor: pointer;
 
       & > .mark-chooser__span {
         background-color: $silver;
@@ -54,7 +54,7 @@
     mask-size: 32px;
   }
 
-  &__checkbox:checked ~ .x-section {
+  &__checkbox:checked ~ .o-section {
     background-color: $silver;
     cursor: default;
 
@@ -63,7 +63,7 @@
     }
   }
 
-  &__checkbox:checked ~ .o-section {
+  &__checkbox:checked ~ .x-section {
     background-color: $darkNavy;
     cursor: pointer;
 

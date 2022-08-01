@@ -21,7 +21,7 @@ const NewGameDisplay = (props) => {
   const maskImgO = { maskImage: urlStrO };
 
   return (
-    <main className="newgame-display">
+    <div className="newgame-display">
       <div className="newgame-display__icons">
         <img src={props.iconX} alt="x-icon" className="xo-icon" />
         <img src={props.iconO} alt="o-icon" className="xo-icon" />
@@ -62,7 +62,7 @@ const NewGameDisplay = (props) => {
           label="new game (vs player)"
         />
       </div>
-    </main>
+    </div>
   );
 };
 
