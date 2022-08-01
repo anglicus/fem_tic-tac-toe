@@ -3,6 +3,7 @@ import { useState } from "react";
 import NewGameDisplay from "./components/newgamedisplay";
 import GameDisplay from "./components/gamedisplay";
 import BannerModal from "./components/bannermodal";
+import { decideAIMove } from "./AI";
 
 import iconX from "./assets/icon-x.svg";
 import iconO from "./assets/icon-o.svg";
@@ -36,8 +37,8 @@ function App() {
 
   // function to copy gameState into gameVars //
   const copyGameVars = () => {
-    console.log("**** copyGameVars ****");
-    console.log("----- game state is now", gameState);
+    // console.log("**** copyGameVars ****");
+    // console.log("----- game state is now", gameState);
     let newGameVars = {};
     newGameVars.newGame = gameState.newGame;
     newGameVars.boardState = gameState.boardState;
@@ -46,7 +47,7 @@ function App() {
     newGameVars.turnMark = gameState.turnMark;
     newGameVars.winnerMark = gameState.winnerMark;
     newGameVars.modalParameters = gameState.modalParameters;
-    console.log("     #### copyGameVars ####");
+    // console.log("     #### copyGameVars ####");
     return newGameVars;
   };
 
@@ -58,16 +59,16 @@ function App() {
   };
 
   const hideModal = () => {
-    console.log("**** hideModal ****");
-    console.log("----- game state is now", gameState);
-    console.log("----- game vars", gameVars);
+    // console.log("**** hideModal ****");
+    // console.log("----- game state is now", gameState);
+    // console.log("----- game vars", gameVars);
     gameVars = copyGameVars();
     gameVars.modalParameters.show = false;
 
     // when the modal was shown due to a winner, reset the board
     // and return to "x" turn
     if (gameVars.winnerMark !== "") {
-      console.log("----- clearing out since there was a winner");
+      // console.log("----- clearing out since there was a winner");
       gameVars.winnerMark = "";
       gameVars.turnMark = "x";
       gameVars.boardState = ["", "", "", "", "", "", "", "", ""];
@@ -78,28 +79,17 @@ function App() {
 
   // AI functions //////////////////////////////////////////////////////////////////////////////
   const handleAIMove = () => {
-    console.log("**** handleAIMove ****");
-    console.log("----- game state is now", gameState);
-    console.log("----- board state is", gameVars.boardState);
-    console.log(
-      "----- turn is",
-      gameVars.turnMark,
-      " played by ",
-      gameVars.players[gameVars.turnMark]
-    );
-
-    let emptySquares = [];
-    for (let i = 0; i < 9; i++) {
-      console.log("----- checking", i);
-      if (gameVars.boardState[i] === "") {
-        console.log("----- pushing", i);
-        emptySquares.push(i);
-      }
-    }
-    console.log("----- emptySquares:", emptySquares);
-    let chosenSquare = Math.floor(Math.random() * emptySquares.length);
-    handleTurn(emptySquares[chosenSquare]);
-    console.log("     #### handleAIMove ####");
+    // console.log("**** handleAIMove ****");
+    // console.log("----- game state is now", gameState);
+    // console.log("----- board state is", gameVars.boardState);
+    // console.log(
+    //   "----- turn is",
+    //   gameVars.turnMark,
+    //   " played by ",
+    //   gameVars.players[gameVars.turnMark]
+    // );
+    handleTurn(decideAIMove(gameVars.boardState, gameVars.turnMark));
+    // console.log("     #### handleAIMove ####");
   };
 
   // game state functions //////////////////////////////////////////////////////////////////////
@@ -115,9 +105,9 @@ function App() {
   // sets new game state based on any changes
   // and checks if it's an AI turn or human turn
   const updateGame = () => {
-    console.log("**** updateGame ****");
-    console.log("----- game state is now", gameState);
-    console.log("----- updating with gameVars: ", gameVars);
+    // console.log("**** updateGame ****");
+    // console.log("----- game state is now", gameState);
+    // console.log("----- updating with gameVars: ", gameVars);
     setGameState(gameVars);
     if (
       gameVars.players[gameVars.turnMark] === "cpu" &&
@@ -125,14 +115,14 @@ function App() {
     ) {
       handleAIMove();
     }
-    console.log("     #### updateGame ####");
+    // console.log("     #### updateGame ####");
   };
 
   // handleStartGame
   // resets all game data and inputs player
   // names based on the NewGameDisplay
   const handleStartGame = (playerOptions) => {
-    console.log("**** handleStartGame ****");
+    // console.log("**** handleStartGame ****");
     // playerOptions: nested object:
     //    { marks, players}
     //    marks = {p1: "x/o", p2: "o/x"}
@@ -155,7 +145,7 @@ function App() {
     setTurnMark("x");
     setPlayers({ x: gameVars.players.x, o: gameVars.players.o });
     */
-    console.log("----- initial game vars", gameVars);
+    // console.log("----- initial game vars", gameVars);
     updateGame();
     /*
     if (gameVars.players.x === "cpu") {
@@ -169,25 +159,26 @@ function App() {
   // when a PlaySquare is clicked or AI moves, it invokes this function
   // and sends the number of the clicked square (id)
   const handleTurn = (id) => {
-    console.log("**** handleTurn ****");
-    console.log(
+    // console.log("**** handleTurn ****");
+    /* console.log(
       "----- player with mark",
       gameVars.turnMark,
       "clicked square",
       id
     );
     console.log("----- game state is now", gameState);
+    */
     if (gameVars.players[gameVars.turnMark] !== "cpu") {
       gameVars = copyGameVars();
     }
     gameVars.boardState[id] = gameVars.turnMark;
-    console.log("----- handling turn of", gameVars.turnMark);
-    console.log("----- with board state:", gameVars.boardState);
-    console.log("----- with players", gameVars.players);
+    // console.log("----- handling turn of", gameVars.turnMark);
+    // console.log("----- with board state:", gameVars.boardState);
+    // console.log("----- with players", gameVars.players);
     // setBoardState(gameVars.boardState);
     testForWin();
     updateGame();
-    console.log("     #### handleTurn ####");
+    // console.log("     #### handleTurn ####");
   };
 
   // handleWinner
@@ -243,7 +234,7 @@ function App() {
   // testForWin
   // test for win (tie yet to be implemented)
   const testForWin = () => {
-    console.log("**** testForWin ****");
+    // console.log("**** testForWin ****");
     // find how many turns have been taken based on empty spaces
     let turnCount =
       9 -
@@ -293,7 +284,7 @@ function App() {
     } else {
       gameVars.turnMark = "x";
     }
-    console.log("     #### testForWin ####");
+    // console.log("     #### testForWin ####");
   };
 
   // display //////////////////////////////////////////////////////////////////////////////
