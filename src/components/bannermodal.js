@@ -17,23 +17,42 @@ const BannerModal = ({ hideModal, resetFunction, winnerMark, parameters }) => {
 
   return (
     <div className={"banner-modal " + showHideClassName}>
-      {parameters.pElement}
-      {parameters.winIcon}
-      <h2>{parameters.heading}</h2>
-      <Button
-        clickFunction={button1Function}
-        functionParameters={null}
-        colorClass="btn--silver"
-        sizeClass="btn--secondary"
-        label={parameters.button1Text}
-      />
-      <Button
-        clickFunction={button2Function}
-        functionParameters={winnerMark}
-        colorClass="btn--yellow"
-        sizeClass="btn--secondary"
-        label={parameters.button2Text}
-      />
+      <div className={"banner-modal__banner"}>
+        {parameters.pElement}
+        <div className="banner-modal__heading-div">
+          {parameters.winIcon}
+          <h2
+            className={
+              "banner-modal__heading " +
+              (winnerMark === "x"
+                ? "x-win"
+                : winnerMark === "o"
+                ? "o-win"
+                : "reset")
+            }
+          >
+            {parameters.heading}
+          </h2>
+        </div>
+        <div className="banner-modal__button-div">
+          <Button
+            clickFunction={button1Function}
+            functionParameters={null}
+            colorClass="btn--silver"
+            sizeClass="btn--secondary"
+            layoutClass="banner-modal__button"
+            label={parameters.button1Text}
+          />
+          <Button
+            clickFunction={button2Function}
+            functionParameters={winnerMark}
+            colorClass="btn--yellow"
+            sizeClass="btn--secondary"
+            layoutClass="banner-modal__button"
+            label={parameters.button2Text}
+          />
+        </div>
+      </div>
     </div>
   );
 };

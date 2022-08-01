@@ -1,9 +1,14 @@
 // banner-modal.scss
 
+@use "../abstracts/colors" as *;
+
 .banner-modal {
   position: absolute;
-  background-color: red;
+  top: 0;
+  left: 0;
+  height: 100%;
   width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 
   &.closed {
     display: none;
@@ -11,5 +16,64 @@
 
   &.open {
     display: block;
+  }
+
+  &__banner {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    height: 228px;
+    padding-bottom: 61px;
+
+    width: 100%;
+    background-color: $semiDarkNavy;
+    color: $silver;
+  }
+
+  &__msg {
+    margin-bottom: 16px;
+  }
+
+  &__heading-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 24px;
+
+    & > img {
+      width: 28px;
+      height: 28px;
+      margin-right: 8px;
+    }
+  }
+
+  &__heading {
+    &.x-win {
+      color: $lightBlue;
+    }
+
+    &.o-win {
+      color: $lightYellow;
+    }
+  }
+
+  &__button-div {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  &__button {
+    &:first-child {
+      margin-right: 16px;
+    }
   }
 }

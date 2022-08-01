@@ -4,6 +4,9 @@
 
 .score-box {
   border-radius: 10px;
+  height: 64px;
+  text-align: center;
+  padding-top: 12px;
 
   &--yellow {
     background-color: $lightYellow;

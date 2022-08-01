@@ -1,7 +1,5 @@
 // button.js
 
-import React from "react";
-
 const Button = (props) => {
   return (
     <button

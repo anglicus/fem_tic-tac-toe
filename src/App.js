@@ -205,10 +205,12 @@ function App() {
     if (winnerMark !== "ties") {
       switch (gameVars.players[winnerMark]) {
         case "cpu":
-          winningPElement = <p>oh no, you lost...</p>;
+          winningPElement = (
+            <p className="banner-modal__msg">oh no, you lost...</p>
+          );
           break;
         case "you":
-          winningPElement = <p>you won!</p>;
+          winningPElement = <p className="banner-modal__msg">you won!</p>;
           break;
         default:
           winningPElement = (

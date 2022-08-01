@@ -32,7 +32,7 @@ const GameDisplay = (props) => {
       </div>
       <div className="game-display__turn-display">
         {props.turnMark === "x" ? iconX : iconO}
-        <p>turn</p>
+        <p className="heading-xs">turn</p>
       </div>
       <Button
         clickFunction={props.showModal}
@@ -53,6 +53,7 @@ const GameDisplay = (props) => {
         player={"x (" + props.players.x + ")"}
         score={props.score.x}
         colorClass="score-box--blue"
+        layoutClass="game-display__score-box"
       />
       <ScoreBox
         player="ties"
@@ -63,6 +64,7 @@ const GameDisplay = (props) => {
         player={"o (" + props.players.o + ")"}
         score={props.score.o}
         colorClass="score-box--yellow"
+        layoutClass="game-display__score-box"
       />
     </div>
   );
