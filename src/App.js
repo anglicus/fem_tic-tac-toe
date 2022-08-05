@@ -50,7 +50,9 @@ function App() {
     newGameVars.players.o = gameState.players.o;
     newGameVars.turnMark = gameState.turnMark;
     newGameVars.winnerMark = gameState.winnerMark;
-    newGameVars.modalParameters.show = gameState.modalParameters.show;
+    newGameVars.winningLine = gameState.winningLine;
+    newGameVars.showModal = gameState.showModal;
+    newGameVars.modalParameters = gameState.modalParameters;
     // console.log("     #### copyGameVars ####");
     return newGameVars;
   };
@@ -59,7 +61,7 @@ function App() {
   // -- players can only show the modal by choice by clicking the silver restart button
   //    in the upper right corner of the game display, which calls the function showResetModal below
   // -- winning game (or tie) modal is shown automatically by setting the showModal state to "true"
-  const showResetModal = (parameters) => {
+  const showResetModal = () => {
     const newGameState = copyGameVars();
     newGameState.showModal = true;
     newGameState.modalParameters = {
@@ -71,12 +73,20 @@ function App() {
     setGameState(newGameState);
   };
 
+  const showWinningModal = () => {
+    console.log("showWinningModal stateful game state: ", gameState);
+    const newGameState = copyGameVars();
+    console.log("winning game state:", newGameState);
+    newGameState.showModal = true;
+    setGameState(newGameState);
+  };
+
   // -- all modals have a button that serves to simply hide the modal
   //    - reset modal: go back to playing the game
   //    - winning modal: continue another round after clearing the board
   const hideModal = () => {
     const newGameState = copyGameVars();
-    newGameState.modalParameters.show = false;
+    newGameState.showModal = false;
 
     // when the modal was shown due to a winner, reset the board
     // and return to "x" turn
@@ -175,6 +185,8 @@ function App() {
           boardState={gameState.boardState}
           processMove={processMove}
           showResetModal={showResetModal}
+          showWinningModal={showWinningModal}
+          modalShown={gameState.showModal}
           iconX={iconX}
           iconO={iconO}
         />

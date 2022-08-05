@@ -14,9 +14,13 @@ const GameDisplay = (props) => {
 
   const playSquares = [];
 
+  // assume it's not the AI's turn
   let AITurn = false;
 
+  // but check to see if it is ...
   if (props.players[props.turnMark] === "cpu" && props.winnerMark === "") {
+    // if so, get the AI's best move, then call processMove()
+    // which will cause a render
     AITurn = true;
     const thinkingTime = Math.floor(Math.random() * 2000) + 300;
     const AIMove = decideAIMove(props.boardState, props.turnMark);
@@ -25,9 +29,18 @@ const GameDisplay = (props) => {
     }, thinkingTime);
   }
 
+  // if someone won, and the modal is not already being shown,
+  // show it after a short delay (so we can see the winning line)
+  if (props.winnerMark !== "" && !props.modalShown) {
+    setTimeout(() => {
+      props.showWinningModal();
+    }, 1000);
+  }
+
+  // fill an array with play squares, with empty squares clickable
   for (let i = 0; i < 9; i++) {
     let canClick = true;
-    if (AITurn || props.boardState[i] !== "") {
+    if (props.boardState[i] !== "") {
       canClick = false;
     }
     playSquares.push(
@@ -44,10 +57,18 @@ const GameDisplay = (props) => {
     );
   }
 
+  // we want to block clicks on squares and buttons if either
+  // the AI is taking its turn, or if a win just happened (but not if
+  // the modal is being shown)
+  let screenBlock = false;
+  if (AITurn || (props.winnerMark !== "" && !props.modalShown)) {
+    screenBlock = true;
+  }
+
   return (
     <div className="game-display">
       <div
-        className={`game-display__ai-screen ${AITurn ? "blocking" : ""}`}
+        className={`game-display__screen ${screenBlock ? "blocking" : ""}`}
       ></div>
       <div className="game-display__icons">
         {iconX}

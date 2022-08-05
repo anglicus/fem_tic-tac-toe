@@ -96,7 +96,6 @@ function handleGameLogic(gameVars, moveID) {
     gameVars.winnerMark = winCheck.winnerMark;
     gameVars.winningLine = winCheck.line;
     // set the modal parameters
-    gameVars.showModal = true;
     gameVars.modalParameters = setWinnerParameters(
       gameVars.players,
       winCheck.winnerMark
@@ -105,7 +104,7 @@ function handleGameLogic(gameVars, moveID) {
     // alternate the turn
     gameVars.turnMark = gameVars.turnMark === "x" ? "o" : "x";
   }
-  console.log(gameVars);
+  console.log("handle game logic:", gameVars);
   return gameVars;
 }
 

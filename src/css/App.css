@@ -409,7 +409,7 @@
   width: 15px;
   height: 15px;
 }
-.game-display__ai-screen {
+.game-display__screen {
   position: absolute;
   top: 0;
   left: 0;
@@ -418,6 +418,6 @@
   height: 100vh;
   display: none;
 }
-.game-display__ai-screen.blocking {
+.game-display__screen.blocking {
   display: block;
 }/*# sourceMappingURL=app.css.map */
