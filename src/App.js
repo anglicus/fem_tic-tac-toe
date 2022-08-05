@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import NewGameDisplay from "./components/newgamedisplay";
 import GameDisplay from "./components/gamedisplay";
@@ -58,6 +58,18 @@ function App() {
     newGameVars.modalParameters = gameState.modalParameters;
     return newGameVars;
   };
+
+  useEffect(() => {
+    let savedState = JSON.parse(window.localStorage.getItem("game-state"));
+    console.log("saved state: ", savedState);
+    if (savedState) {
+      setGameState(savedState);
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("game-state", JSON.stringify(gameState));
+  }, [gameState]);
 
   // modal-related functions //////////////////////////////////////////////////////////////////////
   // -- players can only show the modal by choice by clicking the silver restart button

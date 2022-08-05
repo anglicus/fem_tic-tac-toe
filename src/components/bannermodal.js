@@ -25,7 +25,9 @@ const BannerModal = (props) => {
   return (
     <div className={"banner-modal " + showHideClassName}>
       <div className={"banner-modal__banner"}>
-        {props.parameters.pElement}
+        {props.parameters.pMessage === "" ? null : (
+          <p className="banner-modal__msg">{props.parameters.pMessage}</p>
+        )}
         <div className="banner-modal__heading-div">
           {props.winIcon}
           <h2

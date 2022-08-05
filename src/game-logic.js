@@ -58,24 +58,21 @@ function testForWin(boardState, turnMark) {
 }
 
 function setWinnerParameters(players, winnerMark) {
-  let winningPElement;
+  let winningPMessage = "";
   let winningHeading = "";
   let winningIcon;
 
   if (winnerMark !== "ties") {
     switch (players[winnerMark]) {
       case "cpu":
-        winningPElement = (
-          <p className="banner-modal__msg">oh no, you lost...</p>
-        );
+        winningPMessage = "oh no, you lost...";
         break;
       case "you":
-        winningPElement = <p className="banner-modal__msg">you won!</p>;
+        winningPMessage = "you won!";
         break;
       default:
-        winningPElement = <p>player {players[winnerMark][1]} wins!</p>;
+        winningPMessage = "player " + players[winnerMark][1] + " wins!";
     }
-
     winningHeading = "takes the round";
     winningIcon =
       winnerMark === "x"
@@ -86,7 +83,7 @@ function setWinnerParameters(players, winnerMark) {
   }
 
   let modalParameters = {
-    pElement: winningPElement,
+    pMessage: winningPMessage,
     winnerMark: winnerMark,
     winIcon: winningIcon,
     heading: winningHeading,
