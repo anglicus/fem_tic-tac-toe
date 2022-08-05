@@ -114,6 +114,9 @@
   width: 40px;
   height: 40px;
 }
+.play-square--empty {
+  cursor: pointer;
+}
 .play-square__outline {
   display: none;
 }
@@ -387,4 +390,16 @@
 .game-display__btn-reset > img {
   width: 15px;
   height: 15px;
+}
+.game-display__ai-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100vh;
+  display: none;
+}
+.game-display__ai-screen.blocking {
+  display: block;
 }/*# sourceMappingURL=app.css.map */

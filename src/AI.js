@@ -1,7 +1,8 @@
 // AI.js
 
+// function analyzeLine
 // - determines how many x and o marks the line contains
-//   and where the empty are
+//   and where any empty squares are in that line
 //   returns object { x: <int>, o: <int>, empty: [<int>]}
 function analyzeLine(boardState, line) {
   let xCount = 0;
@@ -17,9 +18,9 @@ function analyzeLine(boardState, line) {
   return { x: xCount, o: oCount, empty: empties };
 }
 
-// - function to decide the AI's move
+// function decideAIMove
 // - weights squares based on strategic considerations
-// - but also adds in some randomness to make the game more "human"
+//   but also adds in some randomness to make the game more "human"
 function decideAIMove(boardState, AIMark) {
   // if the AI has the first turn, take a random move
   if (boardState.filter((square) => square === "").length === 9) {
@@ -77,21 +78,17 @@ function decideAIMove(boardState, AIMark) {
     8: 0,
   };
 
-  // - Analyze the lines prioritize the moves
-
+  // - Analyze the lines and prioritize the moves
   for (let i = 0; i < winningLines.length; i++) {
-    // console.log("----- checking line", winningLines[i]);
     let lineStatus = analyzeLine(boardState, winningLines[i]);
 
     // does the AI have 2/3 on this line?
     if (lineStatus[AIMark] === 2 && lineStatus.empty.length === 1) {
-      console.log("----- AI can win at square", lineStatus.empty[0]);
       movePriorities[lineStatus.empty[0]] += CAN_WIN;
     }
 
     // does the opponent have 2/3 on this line?
     if (lineStatus[AIMark] === 0 && lineStatus.empty.length === 1) {
-      console.log("----- AI can lose at square", lineStatus.empty[0]);
       movePriorities[lineStatus.empty[0]] += CAN_BLOCK_WIN;
     }
 
@@ -109,26 +106,19 @@ function decideAIMove(boardState, AIMark) {
     }
   }
 
-  console.log("------------ AI move analysis as follows:");
-  console.log("------------", movePriorities);
-
   // and randomness for a little unpredictability
   let fuzziness = FUZZ_FACTOR;
   if (Math.random() < 1 / FLUB_CHANCE) {
-    console.log("----- he flubbed it !!!!!!!");
     fuzziness = FLUB_FACTOR;
   }
 
   for (let square in movePriorities) {
     if (movePriorities[square] > 0) {
       let shift = Math.random() * 2 * fuzziness - fuzziness;
-      console.log("------ shifting square", square, "priority by", shift);
+      // don't let any priorities fall to zero or below
       movePriorities[square] = Math.max(movePriorities[square] + shift, 0.1);
     }
   }
-
-  console.log("------------ AI priorities after fuzzing:");
-  console.log("------------", movePriorities);
 
   let bestMove = { move: -1, priority: 0 };
   for (let i = 0; i < 9; i++) {
@@ -137,12 +127,6 @@ function decideAIMove(boardState, AIMark) {
       bestMove.priority = movePriorities[i];
     }
   }
-  console.log(
-    "------------ The best move is square",
-    bestMove.move,
-    "with priority",
-    bestMove.priority
-  );
 
   return bestMove.move;
 }

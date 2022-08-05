@@ -2,36 +2,43 @@
 
 import React from "react";
 import Button from "./button";
+/*
+hideModal,
+resetFunction,
+winnerMark,
+winIcon,
+parameters,
+*/
 
-const BannerModal = ({ hideModal, resetFunction, winnerMark, parameters }) => {
-  const showHideClassName = parameters.show ? "open" : "closed";
+const BannerModal = (props) => {
+  const showHideClassName = props.show ? "open" : "closed";
   var button1Function;
   var button2Function;
-  if (parameters.hideModalButton === "button1") {
-    button1Function = hideModal;
-    button2Function = resetFunction;
+  if (props.parameters.hideModalButton === "button1") {
+    button1Function = props.hideModal;
+    button2Function = props.resetFunction;
   } else {
-    button2Function = hideModal;
-    button1Function = resetFunction;
+    button2Function = props.hideModal;
+    button1Function = props.resetFunction;
   }
 
   return (
     <div className={"banner-modal " + showHideClassName}>
       <div className={"banner-modal__banner"}>
-        {parameters.pElement}
+        {props.parameters.pElement}
         <div className="banner-modal__heading-div">
-          {parameters.winIcon}
+          {props.winIcon}
           <h2
             className={
               "banner-modal__heading " +
-              (winnerMark === "x"
+              (props.parameters.winnerMark === "x"
                 ? "x-win"
-                : winnerMark === "o"
+                : props.parameters.winnerMark === "o"
                 ? "o-win"
                 : "reset")
             }
           >
-            {parameters.heading}
+            {props.parameters.heading}
           </h2>
         </div>
         <div className="banner-modal__button-div">
@@ -41,15 +48,15 @@ const BannerModal = ({ hideModal, resetFunction, winnerMark, parameters }) => {
             colorClass="btn--silver"
             sizeClass="btn--secondary"
             layoutClass="banner-modal__button"
-            label={parameters.button1Text}
+            label={props.parameters.button1Text}
           />
           <Button
             clickFunction={button2Function}
-            functionParameters={winnerMark}
+            functionParameters={props.winnerMark}
             colorClass="btn--yellow"
             sizeClass="btn--secondary"
             layoutClass="banner-modal__button"
-            label={parameters.button2Text}
+            label={props.parameters.button2Text}
           />
         </div>
       </div>

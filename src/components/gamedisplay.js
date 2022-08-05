@@ -4,6 +4,7 @@ import React from "react";
 import Button from "./button";
 import ScoreBox from "./scorebox";
 import PlaySquare from "./playsquare";
+import { decideAIMove } from "../AI";
 
 import restartIcon from "../assets/icon-restart.svg";
 
@@ -12,20 +13,39 @@ const GameDisplay = (props) => {
   const iconO = <img src={props.iconO} alt="o-icon" className="xo-icon" />;
 
   const playSquares = [];
+
+  let AITurn = false;
+
+  if (props.players[props.turnMark] === "cpu" && props.winnerMark === "") {
+    AITurn = true;
+    const thinkingTime = Math.floor(Math.random() * 2000) + 300;
+    const AIMove = decideAIMove(props.boardState, props.turnMark);
+    setTimeout(() => {
+      props.processMove(AIMove);
+    }, thinkingTime);
+  }
+
   for (let i = 0; i < 9; i++) {
+    let canClick = true;
+    if (AITurn || props.boardState[i] !== "") {
+      canClick = false;
+    }
     playSquares.push(
       <PlaySquare
         key={i}
         id={i}
         mark={props.boardState[i]}
         turnMark={props.turnMark}
-        clickfunction={props.boardState[i] === "" ? props.handleTurn : () => {}}
+        clickfunction={canClick ? props.processMove : () => {}}
       />
     );
   }
 
   return (
     <div className="game-display">
+      <div
+        className={`game-display__ai-screen ${AITurn ? "blocking" : ""}`}
+      ></div>
       <div className="game-display__icons">
         {iconX}
         {iconO}
@@ -35,14 +55,7 @@ const GameDisplay = (props) => {
         <p className="heading-xs">turn</p>
       </div>
       <Button
-        clickFunction={props.showModal}
-        functionParameters={{
-          show: true,
-          heading: "restart game?",
-          hideModalButton: "button1",
-          button1Text: "no, cancel",
-          button2Text: "yes, restart",
-        }}
+        clickFunction={props.showResetModal}
         layoutClass="game-display__btn-reset"
         colorClass="btn--silver"
         sizeClass="btn--square"

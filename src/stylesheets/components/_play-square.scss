@@ -17,6 +17,10 @@
     height: 40px;
   }
 
+  &--empty {
+    cursor: pointer;
+  }
+
   &__outline {
     display: none;
   }
