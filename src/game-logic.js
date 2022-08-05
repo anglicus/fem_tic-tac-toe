@@ -1,8 +1,7 @@
 // game-logic.js
 
-// helper function
 // function choiceByXO
-// checks if a mark is either "x" or "o" or neither and returns
+// a helper function: checks if a mark is either "x" or "o" or neither and returns
 // the appropriate result -- this is to deal with the fact that
 // sometimes the mark might be neither ("" or "ties"), and double ternaries can
 // be a little awkward
@@ -99,9 +98,13 @@ function setWinnerParameters(players, winnerMark) {
   return modalParameters;
 }
 
-function handleGameLogic(gameVars, moveID) {
+// function processGameLogic
+// -- main function which accepts the current game state and a new move,
+//    then checks for win conditions, and sends back updated game state
+function processGameLogic(gameVars, moveID) {
   gameVars.boardState[moveID] = gameVars.turnMark;
   let winCheck = testForWin(gameVars.boardState, gameVars.turnMark);
+  // winCheck: {win: bool, winnerMark: "x/o/ties", line: [int, int, int]}
   if (winCheck.win) {
     /// change score
     gameVars.score[winCheck.winnerMark] += 1;
@@ -119,5 +122,5 @@ function handleGameLogic(gameVars, moveID) {
   return gameVars;
 }
 
-export { handleGameLogic };
+export { processGameLogic };
 export { choiceByXO };

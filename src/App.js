@@ -3,8 +3,7 @@ import { useState } from "react";
 import NewGameDisplay from "./components/newgamedisplay";
 import GameDisplay from "./components/gamedisplay";
 import BannerModal from "./components/bannermodal";
-import { handleGameLogic } from "./game-logic";
-import { choiceByXO } from "./game-logic";
+import { processGameLogic, choiceByXO } from "./game-logic";
 
 import iconX from "./assets/icon-x.svg";
 import iconO from "./assets/icon-o.svg";
@@ -91,8 +90,8 @@ function App() {
     const newGameState = copyGameVars();
     newGameState.showModal = false;
 
-    // when the modal was shown due to a winner, reset the board
-    // swap starting players and set the turn mark
+    // when the modal was shown due to a winner (or tie), reset the board,
+    // swap starting players, and set the turn mark to the starting player
     if (newGameState.winnerMark !== "") {
       newGameState.winnerMark = "";
       newGameState.winningLine = [];
@@ -146,14 +145,14 @@ function App() {
     setGameState(newGameState);
   };
 
-  // function handleTurn
+  // function processMove
   // -- when a PlaySquare is clicked or AI moves, it invokes this function
   //    and sends the current game state and number of the clicked square (id)
-  //    out to the handleGameLogic function, which then sends back
+  //    out to the processGameLogic function, which then sends back
   //    a new game state based on the results
   const processMove = (id) => {
     const gameStateCopy = copyGameVars();
-    const newGameState = handleGameLogic(gameStateCopy, id);
+    const newGameState = processGameLogic(gameStateCopy, id);
     setGameState(newGameState);
   };
 
