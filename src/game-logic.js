@@ -29,7 +29,7 @@ function testForWin(boardState, turnMark) {
         boardState[winningLines[i][1]] === boardState[winningLines[i][2]] &&
         boardState[winningLines[i][0]] === turnMark
       ) {
-        return { win: true, winnerMark: turnMark };
+        return { win: true, winnerMark: turnMark, line: winningLines[i] };
       }
       i++;
     }
@@ -37,11 +37,11 @@ function testForWin(boardState, turnMark) {
 
   // if a win wasn't encountered above, but 9 turns have been taken then it must be a tie
   if (turnCount === 9) {
-    return { win: true, winnerMark: "ties" };
+    return { win: true, winnerMark: "ties", line: [] };
   }
 
   // otherwise, there is no win
-  return { win: false, winnerMark: "" };
+  return { win: false, winnerMark: "", line: [] };
 
   // console.log("     #### testForWin ####");
 }
@@ -94,6 +94,7 @@ function handleGameLogic(gameVars, moveID) {
     /// change score
     gameVars.score[winCheck.winnerMark] += 1;
     gameVars.winnerMark = winCheck.winnerMark;
+    gameVars.winningLine = winCheck.line;
     // set the modal parameters
     gameVars.showModal = true;
     gameVars.modalParameters = setWinnerParameters(
@@ -104,6 +105,7 @@ function handleGameLogic(gameVars, moveID) {
     // alternate the turn
     gameVars.turnMark = gameVars.turnMark === "x" ? "o" : "x";
   }
+  console.log(gameVars);
   return gameVars;
 }
 

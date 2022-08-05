@@ -34,6 +34,9 @@ const GameDisplay = (props) => {
       <PlaySquare
         key={i}
         id={i}
+        winning={
+          props.winningLine.includes(i) ? "winning-" + props.winnerMark : ""
+        }
         mark={props.boardState[i]}
         turnMark={props.turnMark}
         clickfunction={canClick ? props.processMove : () => {}}

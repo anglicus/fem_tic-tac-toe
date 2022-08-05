@@ -21,6 +21,7 @@ function App() {
     players: { x: null, o: null },
     turnMark: "x",
     winnerMark: "",
+    winningLine: [],
     showModal: false,
     modalParameters: {},
   });
@@ -32,14 +33,13 @@ function App() {
     players: { x: "", o: "" },
     turnMark: "x",
     winnerMark: "",
+    winningLine: [],
     showModal: false,
     modalParameters: {},
   };
 
   // function to copy gameState into a temporary variable //
   const copyGameVars = () => {
-    // console.log("**** copyGameVars ****");
-    // console.log("----- game state is now", gameState);
     let newGameVars = newGameDefaults;
     newGameVars.newGame = gameState.newGame;
     newGameVars.boardState = gameState.boardState;
@@ -82,6 +82,7 @@ function App() {
     // and return to "x" turn
     if (newGameState.winnerMark !== "") {
       newGameState.winnerMark = "";
+      newGameState.winningLine = [];
       newGameState.turnMark = "x";
       newGameState.boardState = ["", "", "", "", "", "", "", "", ""];
     }
@@ -114,6 +115,7 @@ function App() {
       players: { x: "", o: "" },
       turnMark: "x",
       winnerMark: "",
+      winningLine: [],
       showModal: false,
       modalParameters: {},
     };
@@ -168,6 +170,7 @@ function App() {
           players={gameState.players}
           turnMark={gameState.turnMark}
           winnerMark={gameState.winnerMark}
+          winningLine={gameState.winningLine}
           score={gameState.score}
           boardState={gameState.boardState}
           processMove={processMove}

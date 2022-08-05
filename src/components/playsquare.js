@@ -36,7 +36,10 @@ const PlaySquare = (props) => {
   return (
     <div
       className={
-        "play-square play-square--" + (props.mark === "" ? "empty" : "marked")
+        "play-square play-square--" +
+        (props.mark === "" ? "empty" : "marked") +
+        " " +
+        props.winning
       }
       id={"square-" + props.id.toString()}
       onClick={() => {
