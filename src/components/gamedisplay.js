@@ -9,6 +9,18 @@ import { decideAIMove } from "../AI";
 import restartIcon from "../assets/icon-restart.svg";
 
 const GameDisplay = (props) => {
+  const urlStrX = "URL(" + props.iconX + ")";
+  const urlStrO = "URL(" + props.iconO + ")";
+  const maskImgX = { maskImage: urlStrX };
+  const maskImgO = { maskImage: urlStrO };
+
+  const maskElement =
+    props.turnMark === "x" ? (
+      <div className="game-display__turnmask" style={maskImgX}></div>
+    ) : (
+      <div className="game-display__turnmask" style={maskImgO}></div>
+    );
+
   const iconX = <img src={props.iconX} alt="x-icon" className="xo-icon" />;
   const iconO = <img src={props.iconO} alt="o-icon" className="xo-icon" />;
 
@@ -47,9 +59,7 @@ const GameDisplay = (props) => {
       <PlaySquare
         key={i}
         id={i}
-        winning={
-          props.winningLine.includes(i) ? "winning-" + props.winnerMark : ""
-        }
+        winning={props.winningLine.includes(i) ? props.winnerMark : ""}
         mark={props.boardState[i]}
         turnMark={props.turnMark}
         clickfunction={canClick ? props.processMove : () => {}}
@@ -58,8 +68,7 @@ const GameDisplay = (props) => {
   }
 
   // we want to block clicks on squares and buttons if either
-  // the AI is taking its turn, or if a win just happened (but not if
-  // the modal is being shown)
+  // the AI is taking its turn, or if a win just happened, before the modal appears
   let screenBlock = false;
   if (AITurn || (props.winnerMark !== "" && !props.modalShown)) {
     screenBlock = true;
@@ -75,7 +84,7 @@ const GameDisplay = (props) => {
         {iconO}
       </div>
       <div className="game-display__turn-display">
-        {props.turnMark === "x" ? iconX : iconO}
+        {maskElement}
         <p className="heading-xs">turn</p>
       </div>
       <Button

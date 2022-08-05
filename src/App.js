@@ -4,6 +4,7 @@ import NewGameDisplay from "./components/newgamedisplay";
 import GameDisplay from "./components/gamedisplay";
 import BannerModal from "./components/bannermodal";
 import { handleGameLogic } from "./game-logic";
+import { choiceByXO } from "./game-logic";
 
 import iconX from "./assets/icon-x.svg";
 import iconO from "./assets/icon-o.svg";
@@ -165,15 +166,12 @@ function App() {
           show={gameState.showModal}
           hideModal={hideModal}
           resetFunction={resetGame}
-          winIcon={
-            gameState.winnerMark !== "" ? (
-              gameState.winnerMark === "x" ? (
-                <img src={iconX} alt="x-icon" />
-              ) : (
-                <img src={iconO} alt="o-icon" />
-              )
-            ) : null
-          }
+          winIcon={choiceByXO(
+            gameState.winnerMark,
+            <img src={iconX} alt="x-icon" />,
+            <img src={iconO} alt="o-icon" />,
+            null
+          )}
           parameters={gameState.modalParameters}
         />
         <GameDisplay

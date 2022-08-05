@@ -1,5 +1,17 @@
 // game-logic.js
 
+// helper function
+// function choiceByXO
+// checks if a mark is either "x" or "o" or neither and returns
+// the appropriate result -- this is to deal with the fact that
+// sometimes the mark might be neither ("" or "ties"), and double ternaries can
+// be a little awkward
+function choiceByXO(mark, xResult, oResult, nResult) {
+  if (mark === "x") return xResult;
+  if (mark === "o") return oResult;
+  return nResult;
+}
+
 // funtion testForWin
 //  returns { win: true/false, winnerMark: "x/o/ties"}
 function testForWin(boardState, turnMark) {
@@ -109,3 +121,4 @@ function handleGameLogic(gameVars, moveID) {
 }
 
 export { handleGameLogic };
+export { choiceByXO };

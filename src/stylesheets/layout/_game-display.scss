@@ -46,11 +46,15 @@
 
     background-color: $semiDarkNavy;
     color: $silver;
+  }
 
-    & > img {
-      height: 16px;
-      width: 16px;
-    }
+  &__turnmask {
+    background-color: $silver;
+    width: 16px;
+    height: 16px;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: 16px;
   }
 
   &__btn-reset {

@@ -7,17 +7,29 @@ import iconO from "../assets/icon-o.svg";
 import iconXOutline from "../assets/icon-x-outline.svg";
 import iconOOutline from "../assets/icon-o-outline.svg";
 
+import { choiceByXO } from "../game-logic";
+
 const PlaySquare = (props) => {
-  const imgElement =
-    props.mark !== "" ? (
-      props.mark === "x" ? (
-        <img src={iconX} alt="x icon" />
-      ) : (
-        <img src={iconO} alt="o icon" />
-      )
-    ) : (
-      <span></span>
-    );
+  const urlStrX = "URL(" + iconX + ")";
+  const urlStrO = "URL(" + iconO + ")";
+  const maskImgX = { maskImage: urlStrX };
+  const maskImgO = { maskImage: urlStrO };
+
+  const imgElement = choiceByXO(
+    props.mark,
+    <img src={iconX} alt="x icon" />,
+    <img src={iconO} alt="o icon" />,
+    null
+  );
+
+  const maskElement = choiceByXO(
+    props.mark,
+    <div className="play-square__winmask winmask" style={maskImgX}></div>,
+    <div className="play-square__winmask winmask" style={maskImgO}></div>,
+    null
+  );
+
+  const winClass = choiceByXO(props.winning, " winning-x", " winning-o", "");
 
   const outlineElement =
     props.turnMark === "x" ? (
@@ -33,13 +45,13 @@ const PlaySquare = (props) => {
         alt="o icon outline"
       />
     );
+
   return (
     <div
       className={
         "play-square play-square--" +
         (props.mark === "" ? "empty" : "marked") +
-        " " +
-        props.winning
+        winClass
       }
       id={"square-" + props.id.toString()}
       onClick={() => {
@@ -48,6 +60,7 @@ const PlaySquare = (props) => {
     >
       {imgElement}
       {outlineElement}
+      {props.winning !== "" ? maskElement : null}
     </div>
   );
 };

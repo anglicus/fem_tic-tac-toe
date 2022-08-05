@@ -3,6 +3,7 @@
 @use "../abstracts/colors" as *;
 
 .play-square {
+  position: relative;
   background-color: $semiDarkNavy;
   --shadow-width: -8px;
   height: 95px;
@@ -17,12 +18,29 @@
     height: 40px;
   }
 
+  &__winmask {
+    display: none;
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: 40px;
+    width: 100%;
+    height: 100%;
+    background-color: $darkNavy;
+  }
+
   &.winning-x {
     background-color: $lightBlue;
     box-shadow: inset 0 var(--shadow-width) 0 0 $lightBlueShadow;
 
     & > img {
-      filter: brightness(0);
+      display: none;
+    }
+
+    & > .winmask {
+      display: block;
     }
   }
 
@@ -31,7 +49,11 @@
     box-shadow: inset 0 var(--shadow-width) 0 0 $lightYellowShadow;
 
     & > img {
-      filter: brightness(0);
+      display: none;
+    }
+
+    & > .winmask {
+      display: block;
     }
   }
 
