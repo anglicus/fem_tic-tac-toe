@@ -20,6 +20,7 @@ function App() {
     boardState: ["", "", "", "", "", "", "", "", ""],
     score: { x: 0, o: 0, ties: 0 },
     players: { x: null, o: null },
+    startingPlayer: "x",
     turnMark: "x",
     winnerMark: "",
     winningLine: [],
@@ -32,6 +33,7 @@ function App() {
     boardState: ["", "", "", "", "", "", "", "", ""],
     score: { x: 0, o: 0, ties: 0 },
     players: { x: "", o: "" },
+    startingPlayer: "x",
     turnMark: "x",
     winnerMark: "",
     winningLine: [],
@@ -49,12 +51,12 @@ function App() {
     newGameVars.score.ties = gameState.score.ties;
     newGameVars.players.x = gameState.players.x;
     newGameVars.players.o = gameState.players.o;
+    newGameVars.startingPlayer = gameState.startingPlayer;
     newGameVars.turnMark = gameState.turnMark;
     newGameVars.winnerMark = gameState.winnerMark;
     newGameVars.winningLine = gameState.winningLine;
     newGameVars.showModal = gameState.showModal;
     newGameVars.modalParameters = gameState.modalParameters;
-    // console.log("     #### copyGameVars ####");
     return newGameVars;
   };
 
@@ -74,10 +76,10 @@ function App() {
     setGameState(newGameState);
   };
 
+  // -- if a player wins, this function will be called after a short delay
+  //    from the GameDisplay
   const showWinningModal = () => {
-    console.log("showWinningModal stateful game state: ", gameState);
     const newGameState = copyGameVars();
-    console.log("winning game state:", newGameState);
     newGameState.showModal = true;
     setGameState(newGameState);
   };
@@ -90,11 +92,13 @@ function App() {
     newGameState.showModal = false;
 
     // when the modal was shown due to a winner, reset the board
-    // and return to "x" turn
+    // swap starting players and set the turn mark
     if (newGameState.winnerMark !== "") {
       newGameState.winnerMark = "";
       newGameState.winningLine = [];
-      newGameState.turnMark = "x";
+      newGameState.startingPlayer =
+        newGameState.startingPlayer === "x" ? "o" : "x";
+      newGameState.turnMark = newGameState.startingPlayer;
       newGameState.boardState = ["", "", "", "", "", "", "", "", ""];
     }
 
@@ -124,6 +128,7 @@ function App() {
       boardState: ["", "", "", "", "", "", "", "", ""],
       score: { x: 0, o: 0, ties: 0 },
       players: { x: "", o: "" },
+      startingPlayer: "x",
       turnMark: "x",
       winnerMark: "",
       winningLine: [],

@@ -116,7 +116,6 @@ function handleGameLogic(gameVars, moveID) {
     // alternate the turn
     gameVars.turnMark = gameVars.turnMark === "x" ? "o" : "x";
   }
-  console.log("handle game logic:", gameVars);
   return gameVars;
 }
 
