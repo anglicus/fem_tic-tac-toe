@@ -78,6 +78,12 @@
     mask-position: center;
     mask-size: 16px;
 
+    @include breakpoint-up(medium) {
+      width: 20px;
+      height: 20px;
+      mask-size: 20px;
+    }
+
     &.x-turn {
       mask-image: url("/public/icon-x.svg");
     }

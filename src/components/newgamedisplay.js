@@ -22,7 +22,9 @@ const NewGameDisplay = (props) => {
         <img src={props.iconO} alt="o-icon" className="xo-icon" />
       </div>
       <div className="newgame-display__chooser-div">
-        <h1 className="newgame-display__heading">Pick player 1's mark</h1>
+        <h1 className="newgame-display__heading heading-xs">
+          Pick player 1's mark
+        </h1>
         <label className="mark-chooser">
           <input
             type="checkbox"
@@ -36,7 +38,9 @@ const NewGameDisplay = (props) => {
             <span className="mark-chooser__span o-span"></span>
           </div>
         </label>
-        <p className="newgame-display__reminder">remember : x goes first</p>
+        <p className="newgame-display__reminder heading-s">
+          remember : x goes first
+        </p>
       </div>
       <div className="newgame-display__button-div">
         <Button
@@ -54,7 +58,7 @@ const NewGameDisplay = (props) => {
           functionParameters={{ marks: marks, players: { p1: "p1", p2: "p2" } }}
           colorClass="btn--blue"
           sizeClass="btn--primary"
-          label="new game (vs player)"
+          label="new game &nbsp;(vs player)"
         />
       </div>
     </div>

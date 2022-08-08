@@ -11,6 +11,7 @@
 
   @include breakpoint-up(medium) {
     height: 72px;
+    border-radius: 15px;
   }
 
   &--yellow {

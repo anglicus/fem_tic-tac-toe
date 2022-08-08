@@ -1,5 +1,7 @@
 // app.scss
 
+@use "./base/designmatch";
+
 @use "./components/buttons";
 @use "./components/score-box";
 @use "./components/play-square";

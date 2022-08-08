@@ -71,6 +71,7 @@ p {
 @media (min-width: 641px) {
   p {
     font-size: 0.875rem;
+    line-height: 1.1025rem;
     letter-spacing: 0.88px;
   }
 }
@@ -81,12 +82,32 @@ p.heading-m {
   letter-spacing: 1.25px;
   font-weight: 700;
 }
+@media (min-width: 641px) {
+  p.heading-m {
+    font-size: 1.5rem;
+    line-height: 1.89rem;
+    letter-spacing: 1.5px;
+  }
+}
+
+p.heading-s {
+  font-size: 0.875rem;
+  line-height: 1.1025rem;
+  letter-spacing: 0.88px;
+}
 
 p.heading-xs {
   font-size: 0.875rem;
   line-height: 1.1025rem;
   letter-spacing: 0.88px;
   font-weight: 700;
+}
+@media (min-width: 641px) {
+  p.heading-xs {
+    font-size: 1rem;
+    line-height: 1.26rem;
+    letter-spacing: 1px;
+  }
 }
 
 button {
@@ -97,7 +118,7 @@ button {
   text-transform: uppercase;
 }
 @media (min-width: 641px) {
-  button {
+  button.btn--primary {
     font-size: 1.25rem;
     line-height: 1.575rem;
     letter-spacing: 1.25px;

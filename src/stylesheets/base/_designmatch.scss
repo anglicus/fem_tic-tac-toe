@@ -14,18 +14,18 @@ body {
     height: 100%;
     width: 100%;
     content: "";
-    background-image: url("/design/Mobile.jpg");
+    background-image: url("../design/Mobile-New.png");
     background-size: 375px auto;
-    opacity: 0;
+    opacity: 0.43;
     pointer-events: none;
 
     @include breakpoint-up(medium) {
-      background-image: url("/design/Desktop.jpg");
+      background-image: url("../design/Tablet-New.png");
       background-size: 768px auto;
     }
 
     @include breakpoint-up(large) {
-      background-image: url("/design/Desktop.jpg");
+      background-image: url("../design/Desktop-New.png");
       background-size: 1440px auto;
     }
   }

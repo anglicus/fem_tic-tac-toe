@@ -33,7 +33,7 @@
     justify-content: flex-end;
 
     height: 228px;
-    padding-bottom: 61px;
+    padding-bottom: 48px;
 
     width: 100%;
     background-color: $semiDarkNavy;
@@ -41,6 +41,12 @@
 
     @include breakpoint-up(medium) {
       height: 266px;
+      padding-bottom: 45px;
+    }
+
+    @include breakpoint-up(large) {
+      top: 330px;
+      transform: none;
     }
   }
 

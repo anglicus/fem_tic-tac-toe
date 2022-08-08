@@ -9,7 +9,7 @@
   margin: auto;
 
   @include breakpoint-up(medium) {
-    padding-top: 227px;
+    padding-top: 277px;
     width: 460px;
   }
 
@@ -39,14 +39,28 @@
     text-align: center;
     background-color: $semiDarkNavy;
     box-shadow: inset 0 -8px 0 0 $darkNavyShadow;
+
+    @include breakpoint-up(medium) {
+      margin-top: 40px;
+    }
   }
 
   &__button-div {
     margin-top: 32px;
 
+    @include breakpoint-up(medium) {
+      margin-top: 40px;
+    }
+
     & > button {
       &:not(:first-child) {
         margin-top: 16px;
+      }
+
+      @include breakpoint-up(medium) {
+        &:not(:first-child) {
+          margin-top: 20px;
+        }
       }
     }
   }
@@ -56,6 +70,6 @@
   }
 
   &__reminder {
-    margin-top: 24px;
+    margin-top: 18px;
   }
 }
