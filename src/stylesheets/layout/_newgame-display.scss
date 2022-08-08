@@ -1,9 +1,21 @@
 // newgame-display.scss
 
 @use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
 
 .newgame-display {
   padding-top: 119px;
+  width: 327px;
+  margin: auto;
+
+  @include breakpoint-up(medium) {
+    padding-top: 227px;
+    width: 460px;
+  }
+
+  @include breakpoint-up(large) {
+    padding-top: 215px;
+  }
 
   &__icons {
     display: flex;

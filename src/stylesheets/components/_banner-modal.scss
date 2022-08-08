@@ -1,6 +1,7 @@
 // banner-modal.scss
 
 @use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
 
 .banner-modal {
   position: absolute;
@@ -37,6 +38,10 @@
     width: 100%;
     background-color: $semiDarkNavy;
     color: $silver;
+
+    @include breakpoint-up(medium) {
+      height: 266px;
+    }
   }
 
   &__msg {
@@ -53,6 +58,12 @@
       width: 28px;
       height: 28px;
       margin-right: 8px;
+
+      @include breakpoint-up(medium) {
+        width: 64px;
+        height: 64px;
+        margin-right: 24px;
+      }
     }
   }
 

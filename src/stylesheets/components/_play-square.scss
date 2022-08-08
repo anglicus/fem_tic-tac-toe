@@ -1,6 +1,7 @@
 // _play-square.scss
 
 @use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
 
 .play-square {
   position: relative;
@@ -13,9 +14,20 @@
 
   box-shadow: inset 0 var(--shadow-width) 0 0 $darkNavyShadow;
 
+  @include breakpoint-up(medium) {
+    height: 140px;
+    width: 140px;
+    padding: 38px;
+  }
+
   & > img {
     width: 40px;
     height: 40px;
+
+    @include breakpoint-up(medium) {
+      width: 64px;
+      height: 64px;
+    }
   }
 
   & > .winmask {
@@ -29,6 +41,10 @@
     width: 100%;
     height: 100%;
     background-color: $darkNavy;
+
+    @include breakpoint-up(medium) {
+      mask-size: 64px;
+    }
   }
 
   &.winning-x {

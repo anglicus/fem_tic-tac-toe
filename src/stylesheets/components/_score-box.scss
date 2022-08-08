@@ -1,12 +1,17 @@
 // _score-box.scss
 
 @use "../abstracts/colors" as *;
+@use "../abstracts/mixins" as *;
 
 .score-box {
   border-radius: 10px;
   height: 64px;
   text-align: center;
   padding-top: 12px;
+
+  @include breakpoint-up(medium) {
+    height: 72px;
+  }
 
   &--yellow {
     background-color: $lightYellow;

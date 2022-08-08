@@ -5,12 +5,23 @@
 
 .game-display {
   padding-top: 24px;
+  width: 324px;
+  margin: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 20px;
   row-gap: 20px;
 
   background-color: $darkNavy;
+
+  @include breakpoint-up(medium) {
+    padding-top: 201px;
+    width: 460px;
+  }
+
+  @include breakpoint-up(large) {
+    padding-top: 139px;
+  }
 
   &__icons {
     align-self: start;
@@ -29,6 +40,11 @@
         margin-right: 9px;
       }
     }
+
+    @include breakpoint-up(medium) {
+      height: 52px;
+      margin-bottom: 0;
+    }
   }
 
   &__turn-display {
@@ -46,6 +62,12 @@
 
     background-color: $semiDarkNavy;
     color: $silver;
+
+    @include breakpoint-up(medium) {
+      height: 52px;
+      padding: 13px 30px 19px;
+      margin-bottom: 0;
+    }
   }
 
   &__turnmask {
@@ -71,6 +93,11 @@
     & > img {
       width: 15px;
       height: 15px;
+
+      @include breakpoint-up(medium) {
+        width: 20px;
+        height: 20px;
+      }
     }
   }
 

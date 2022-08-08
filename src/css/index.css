@@ -30,11 +30,6 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-@media (min-width: 641px) {
-  h1 {
-    font-size: 2.5rem;
-  }
-}
 
 h2 {
   font-size: 1.5rem;
@@ -42,6 +37,13 @@ h2 {
   letter-spacing: 1.5px;
   font-weight: 700;
   text-transform: uppercase;
+}
+@media (min-width: 641px) {
+  h2 {
+    font-size: 2.5rem;
+    line-height: 3.15rem;
+    letter-spacing: 2.5px;
+  }
 }
 
 h3 {
