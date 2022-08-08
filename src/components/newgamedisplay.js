@@ -25,18 +25,19 @@ const NewGameDisplay = (props) => {
         <h1 className="newgame-display__heading heading-xs">
           Pick player 1's mark
         </h1>
-        <label className="mark-chooser">
+        <label className="mark-chooser" for="checkbox">
           <input
             type="checkbox"
+            id="checkbox"
             className="mark-chooser__checkbox"
             onChange={updateOptions}
           ></input>
-          <div className="mark-chooser__section x-section">
+          <span className="mark-chooser__section x-section">
             <span className="mark-chooser__span x-span"></span>
-          </div>
-          <div className="mark-chooser__section o-section">
+          </span>
+          <span className="mark-chooser__section o-section">
             <span className="mark-chooser__span o-span"></span>
-          </div>
+          </span>
         </label>
         <p className="newgame-display__reminder heading-s">
           remember : x goes first
