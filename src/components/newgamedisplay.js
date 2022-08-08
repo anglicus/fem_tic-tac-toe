@@ -25,7 +25,11 @@ const NewGameDisplay = (props) => {
         <h1 className="newgame-display__heading heading-xs">
           Pick player 1's mark
         </h1>
-        <label className="mark-chooser" for="checkbox">
+        <label
+          className="mark-chooser"
+          for="checkbox"
+          aria-label="mark chooser"
+        >
           <input
             type="checkbox"
             id="checkbox"
