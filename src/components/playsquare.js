@@ -10,22 +10,10 @@ import iconOOutline from "../assets/icon-o-outline.svg";
 import { choiceByXO } from "../game-logic";
 
 const PlaySquare = (props) => {
-  const urlStrX = "URL(" + iconX + ")";
-  const urlStrO = "URL(" + iconO + ")";
-  const maskImgX = { maskImage: urlStrX };
-  const maskImgO = { maskImage: urlStrO };
-
   const imgElement = choiceByXO(
     props.mark,
     <img src={iconX} alt="x icon" />,
     <img src={iconO} alt="o icon" />,
-    null
-  );
-
-  const maskElement = choiceByXO(
-    props.mark,
-    <div className="play-square__winmask winmask" style={maskImgX}></div>,
-    <div className="play-square__winmask winmask" style={maskImgO}></div>,
     null
   );
 
@@ -60,7 +48,7 @@ const PlaySquare = (props) => {
     >
       {imgElement}
       {outlineElement}
-      {props.winning !== "" ? maskElement : null}
+      {props.winning !== "" ? <span className="winmask"></span> : null}
     </div>
   );
 };

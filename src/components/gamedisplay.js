@@ -9,18 +9,6 @@ import { decideAIMove } from "../AI";
 import restartIcon from "../assets/icon-restart.svg";
 
 const GameDisplay = (props) => {
-  const urlStrX = "URL(" + props.iconX + ")";
-  const urlStrO = "URL(" + props.iconO + ")";
-  const maskImgX = { maskImage: urlStrX };
-  const maskImgO = { maskImage: urlStrO };
-
-  const maskElement =
-    props.turnMark === "x" ? (
-      <div className="game-display__turnmask" style={maskImgX}></div>
-    ) : (
-      <div className="game-display__turnmask" style={maskImgO}></div>
-    );
-
   const iconX = <img src={props.iconX} alt="x-icon" className="xo-icon" />;
   const iconO = <img src={props.iconO} alt="o-icon" className="xo-icon" />;
 
@@ -84,7 +72,11 @@ const GameDisplay = (props) => {
         {iconO}
       </div>
       <div className="game-display__turn-display">
-        {maskElement}
+        <span
+          className={`game-display__turnmask ${
+            props.turnMark === "x" ? "x-turn" : "o-turn"
+          }`}
+        ></span>
         <p className="heading-xs">turn</p>
       </div>
       <Button

@@ -115,7 +115,7 @@
   width: 40px;
   height: 40px;
 }
-.play-square__winmask {
+.play-square > .winmask {
   display: none;
   position: absolute;
   bottom: 2px;
@@ -139,6 +139,8 @@
   display: none;
 }
 .play-square.winning-x > .winmask {
+  -webkit-mask-image: url("/public/icon-x.svg");
+          mask-image: url("/public/icon-x.svg");
   display: block;
 }
 .play-square.winning-o {
@@ -150,6 +152,8 @@
   display: none;
 }
 .play-square.winning-o > .winmask {
+  -webkit-mask-image: url("/public/icon-o.svg");
+          mask-image: url("/public/icon-o.svg");
   display: block;
 }
 .play-square--empty {
@@ -296,6 +300,14 @@
   -webkit-mask-size: 32px;
           mask-size: 32px;
 }
+.mark-chooser__span.x-span {
+  -webkit-mask-image: url("/public/icon-x.svg");
+          mask-image: url("/public/icon-x.svg");
+}
+.mark-chooser__span.o-span {
+  -webkit-mask-image: url("/public/icon-o.svg");
+          mask-image: url("/public/icon-o.svg");
+}
 .mark-chooser__checkbox:checked ~ .o-section {
   background-color: #a8bfc9;
   cursor: default;
@@ -429,6 +441,14 @@
           mask-position: center;
   -webkit-mask-size: 16px;
           mask-size: 16px;
+}
+.game-display__turnmask.x-turn {
+  -webkit-mask-image: url("/public/icon-x.svg");
+          mask-image: url("/public/icon-x.svg");
+}
+.game-display__turnmask.o-turn {
+  -webkit-mask-image: url("/public/icon-o.svg");
+          mask-image: url("/public/icon-o.svg");
 }
 .game-display__btn-reset {
   justify-self: end;

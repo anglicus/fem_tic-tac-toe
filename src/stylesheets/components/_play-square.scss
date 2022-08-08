@@ -18,7 +18,7 @@
     height: 40px;
   }
 
-  &__winmask {
+  & > .winmask {
     display: none;
     position: absolute;
     bottom: 2px;
@@ -40,6 +40,7 @@
     }
 
     & > .winmask {
+      mask-image: url("/public/icon-x.svg");
       display: block;
     }
   }
@@ -53,6 +54,7 @@
     }
 
     & > .winmask {
+      mask-image: url("/public/icon-o.svg");
       display: block;
     }
   }

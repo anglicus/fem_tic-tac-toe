@@ -59,14 +59,16 @@ function App() {
     return newGameVars;
   };
 
+  // on first load, check for a saved game state and load it if it exists
   useEffect(() => {
     let savedState = JSON.parse(window.localStorage.getItem("game-state"));
-    console.log("saved state: ", savedState);
+
     if (savedState) {
       setGameState(savedState);
     }
   }, []);
 
+  // when the game state changes, save it to local storage
   useEffect(() => {
     window.localStorage.setItem("game-state", JSON.stringify(gameState));
   }, [gameState]);

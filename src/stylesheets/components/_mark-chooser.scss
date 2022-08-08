@@ -52,6 +52,14 @@
     mask-repeat: no-repeat;
     mask-position: center;
     mask-size: 32px;
+
+    &.x-span {
+      mask-image: url("/public/icon-x.svg");
+    }
+
+    &.o-span {
+      mask-image: url("/public/icon-o.svg");
+    }
   }
 
   &__checkbox:checked ~ .o-section {

@@ -55,6 +55,14 @@
     mask-repeat: no-repeat;
     mask-position: center;
     mask-size: 16px;
+
+    &.x-turn {
+      mask-image: url("/public/icon-x.svg");
+    }
+
+    &.o-turn {
+      mask-image: url("/public/icon-o.svg");
+    }
   }
 
   &__btn-reset {

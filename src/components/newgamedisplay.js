@@ -15,11 +15,6 @@ const NewGameDisplay = (props) => {
     }
   };
 
-  const urlStrX = "URL(" + props.iconX + ")";
-  const urlStrO = "URL(" + props.iconO + ")";
-  const maskImgX = { maskImage: urlStrX };
-  const maskImgO = { maskImage: urlStrO };
-
   return (
     <div className="newgame-display">
       <div className="newgame-display__icons">
@@ -35,10 +30,10 @@ const NewGameDisplay = (props) => {
             onChange={updateOptions}
           ></input>
           <div className="mark-chooser__section x-section">
-            <span className="mark-chooser__span" style={maskImgX}></span>
+            <span className="mark-chooser__span x-span"></span>
           </div>
           <div className="mark-chooser__section o-section">
-            <span className="mark-chooser__span" style={maskImgO}></span>
+            <span className="mark-chooser__span o-span"></span>
           </div>
         </label>
         <p className="newgame-display__reminder">remember : x goes first</p>
