@@ -2,7 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/anglicus/fem_tic-tac-toe",
+  "homepage": "https://anglicus.github.io/fem_tic-tac-toe",
   "dependencies": {
     "-": "^0.0.1",
     "@testing-library/jest-dom": "^5.16.4",
