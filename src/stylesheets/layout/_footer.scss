@@ -1,0 +1,13 @@
+@use "../abstracts/colors" as *;
+.attribution {
+  position: absolute;
+  bottom: 32px;
+  background-color: $darkNavy;
+  left: 50%;
+  transform: translateX(-50%);
+  color: $silver;
+
+  & > a {
+    color: $lightBlue;
+  }
+}

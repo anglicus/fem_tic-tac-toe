@@ -1,7 +1,5 @@
 // app.scss
 
-@use "./base/designmatch";
-
 @use "./components/buttons";
 @use "./components/score-box";
 @use "./components/play-square";
@@ -12,3 +10,4 @@
 @use "layout/main";
 @use "./layout/newgame-display";
 @use "./layout/game-display";
+@use "./layout/footer";
