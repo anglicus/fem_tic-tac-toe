@@ -44,8 +44,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://www.frontendmentor.io/solutions/mobilefirst-design-react-and-scss-strategic-but-imperfectcpu-player-TIp5t5mq45)
-- Live Site URL: [Add live site URL here](https://anglicus.github.io/fem_tic-tac-toe/)
+- Solution URL: [Frontend Mentor](https://www.frontendmentor.io/solutions/mobilefirst-design-react-and-scss-strategic-but-imperfectcpu-player-TIp5t5mq45)
+- Live Site URL: [GitHub](https://anglicus.github.io/fem_tic-tac-toe/)
 
 ## My process
 
